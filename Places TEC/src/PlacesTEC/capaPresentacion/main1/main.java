@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package progra.pkg3;
+package PlacesTEC.capaPresentacion.main1;
 
 import PlacesTEC.capaLogica.estructura.BST;
 import PlacesTEC.capaLogica.estructura.NodoBST;
