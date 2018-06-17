@@ -13,6 +13,7 @@ import java.util.LinkedList;
  */
 public class GestionLugares {
     private LinkedList<Destino> destinos;
+    private int tama = 0;
 
     public LinkedList<Destino> getDestinos() {
         return destinos;
@@ -22,17 +23,28 @@ public class GestionLugares {
         this.destinos = destinos;
     }
 
+    public GestionLugares() {
+        this.destinos = new LinkedList<Destino>();
+    }
+    public int tize(){
+        tama = destinos.size();
+        return tama;
+    }
+    public String encontrar(int e){
+        return destinos.get(e).getDireccion_exacta();
+    }
+
     public GestionLugares(LinkedList<Destino> destinos) {
         this.destinos = new LinkedList<Destino>();
     }
     
     public void agregarLugarLatLon(int latitud,int longitud,String fecha,String desplazamiento){
         Destino nuevo_Destino = new Destino(latitud,longitud,fecha,desplazamiento);
-        this.destinos.add(nuevo_Destino);
+        this.destinos.add(nuevo_Destino);//cambiar por el del grafo
     }
     public void agregarLugarDir(String direccion_exacta, String fecha, String desplazamiento){
         Destino nuevo_Destino = new Destino(direccion_exacta,fecha,desplazamiento);
-        this.destinos.add(nuevo_Destino);
+        this.destinos.add(nuevo_Destino);//cambiar por el del grafo
     }
     public void eliminarDestino(Destino destino){
        this.destinos.remove(destino);
@@ -44,6 +56,13 @@ public class GestionLugares {
         Destino nuevo_Destino = new Destino(nlatitud,nlongitud,ndireccion_exacta,fecha,ndesplazamiento);
         
     }
+
+    @Override
+    public String toString() {
+        return "GestionLugares{" + "destinos=" + destinos + '}';
+    }
+    
+    
             
     
 }

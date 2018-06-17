@@ -74,6 +74,11 @@ public class VentGestDestinos extends javax.swing.JDialog {
 
         jButtonRegLatLon.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonRegLatLon.setText("Registar lugar por latitud y longitud");
+        jButtonRegLatLon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegLatLonActionPerformed(evt);
+            }
+        });
 
         jButtonEditarDes.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonEditarDes.setText("Editar Lugar de destino");
@@ -119,8 +124,18 @@ public class VentGestDestinos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegDirActionPerformed
-        // TODO add your handling code here:
+        VentAddDir crear_lugar = new VentAddDir(this, rootPaneCheckingEnabled, this);
+        crear_lugar.setVisible(true);
+        crear_lugar.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
     }//GEN-LAST:event_jButtonRegDirActionPerformed
+
+    private void jButtonRegLatLonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegLatLonActionPerformed
+       VentAddLatLon crear_lugar = new VentAddLatLon(this, rootPaneCheckingEnabled, this);
+        crear_lugar.setVisible(true);
+        crear_lugar.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
+    }//GEN-LAST:event_jButtonRegLatLonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

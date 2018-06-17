@@ -52,6 +52,11 @@ public class VentAddDir extends javax.swing.JDialog {
 
         jButtonAgregarDestino.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonAgregarDestino.setText("Agregar Destino");
+        jButtonAgregarDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarDestinoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,6 +112,21 @@ public class VentAddDir extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAgregarDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarDestinoActionPerformed
+        String Direccion,modo,fecha;
+        Direccion = this.jTextFieldDirrecion.getText();
+        modo = this.jTextFieldModoDes.getText();
+        fecha = this.jTextFieldFecha.getText();
+        
+        ventgestion_destinos.getPrincipal().getDestinos().agregarLugarDir(Direccion, fecha, modo);
+        System.out.println(ventgestion_destinos.getPrincipal().getDestinos().toString());
+        this.dispose();
+        
+        
+        
+        
+    }//GEN-LAST:event_jButtonAgregarDestinoActionPerformed
 
     /**
      * @param args the command line arguments
