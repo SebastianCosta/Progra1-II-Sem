@@ -44,6 +44,11 @@ public class Principal extends javax.swing.JFrame {
 
         jButtonGesLug.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jButtonGesLug.setText("Gestionar lugares destino");
+        jButtonGesLug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGesLugActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonGesLug, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, 90));
 
         jButtonSitiosInt.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -61,10 +66,15 @@ public class Principal extends javax.swing.JFrame {
 
         jButtonRutaCorta.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jButtonRutaCorta.setText(" Recomendación de viaje más corto");
+        jButtonRutaCorta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRutaCortaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonRutaCorta, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 660, -1, 80));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlacesTEC/capaPresentacion/main/526791.png"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1065, 824));
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-145, 0, 1210, 824));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -72,6 +82,16 @@ public class Principal extends javax.swing.JFrame {
     private void jButtonSitiosIntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSitiosIntActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSitiosIntActionPerformed
+
+    private void jButtonRutaCortaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRutaCortaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRutaCortaActionPerformed
+
+    private void jButtonGesLugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGesLugActionPerformed
+      VentGestDestinos crear_VentDest = new VentGestDestinos(this, rootPaneCheckingEnabled,this);
+       crear_VentDest.setVisible(true);
+       crear_VentDest.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    }//GEN-LAST:event_jButtonGesLugActionPerformed
 
     /**
      * @param args the command line arguments
