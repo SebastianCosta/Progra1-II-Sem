@@ -98,14 +98,16 @@ public class BST<X> {
         NodoBST parent = raiz;
         NodoBST current = raiz;
         boolean esHijoIzq = false;
-        while (!current.getSitio().getDireccion_exacta().equals(sitio.getDireccion_exacta()) ) {
+        while (!(current.getSitio().getDireccion_exacta()).equals(sitio.getDireccion_exacta()) ) {
             parent = current;
-            if (comparar(current.getSitio().getDireccion_exacta(),sitio.getDireccion_exacta())== true) {
+            if (comparar(current.getSitio().getDireccion_exacta(),sitio.getDireccion_exacta())== false) {
                 esHijoIzq = true;
                 current = current.izquierdo;
+                System.out.println("aqui1");
             } else {
                 esHijoIzq = false;
                 current = current.derecho;
+                System.out.println("aqui2");
             }
             if (current == null) {
                 return false;
