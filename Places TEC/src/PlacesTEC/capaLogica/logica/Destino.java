@@ -32,6 +32,10 @@ public class Destino {
         this.fecha = fecha;
         this.desplazamiento = desplazamiento;
     }
+
+    
+
+  
     
     
     //falta un constructor con lo que no pude leer
