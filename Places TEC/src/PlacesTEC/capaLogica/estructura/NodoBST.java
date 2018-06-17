@@ -15,12 +15,31 @@ public class NodoBST<X> {
     private Destino sitio;
     NodoBST derecho;
     NodoBST izquierdo;
-    
-    
-    
-    
-  
 
+    public Destino getSitio() {
+        return sitio;
+    }
+
+    public void setSitio(Destino sitio) {
+        this.sitio = sitio;
+    }
+
+    public NodoBST getDerecho() {
+        return derecho;
+    }
+
+    public void setDerecho(NodoBST derecho) {
+        this.derecho = derecho;
+    }
+
+    public NodoBST getIzquierdo() {
+        return izquierdo;
+    }
+
+    public void setIzquierdo(NodoBST izquierdo) {
+        this.izquierdo = izquierdo;
+    }
+    
     public NodoBST(Destino sitio) {
         this.sitio = sitio;
         this.derecho = null;
