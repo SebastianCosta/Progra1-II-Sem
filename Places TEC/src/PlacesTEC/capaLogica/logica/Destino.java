@@ -11,19 +11,13 @@ public class Destino {
     private int grado;
     private int minutos;
     private int segundos;
-    private String ID;
+    
     private int telefonoInt;
     private String rating;
     private String horario;
     private String website;
 
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+   
 
     public int getTelefonoInt() {
         return telefonoInt;
@@ -57,8 +51,8 @@ public class Destino {
         this.website = website;
     }
 
-    public Destino(String ID, int telefonoInt, String rating, String horario, String website) {//Constructor para los sitios
-        this.ID = ID;
+    public Destino(String direccion_exacta, int telefonoInt, String rating, String horario, String website) {//Constructor para los sitios
+        this.direccion_exacta = direccion_exacta;
         this.telefonoInt = telefonoInt;
         this.rating = rating;
         this.horario = horario;

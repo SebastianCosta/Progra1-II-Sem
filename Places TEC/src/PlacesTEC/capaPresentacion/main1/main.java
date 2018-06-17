@@ -37,6 +37,8 @@ public class main {
         bst.insertar(sitio1);
         bst.insertar(sitio2);
         bst.insertar(sitio3);
+        bst.eliminarNodoSitio(sitio3);
+        
  
     }  
 }

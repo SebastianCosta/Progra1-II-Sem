@@ -13,25 +13,23 @@ import static javax.management.Query.lt;
  * @author sebas
  */
 public class BST<X> {
-    private Destino raiz;
-    private BST derecho;
-    private BST izquierdo; 
-
-    
+    private NodoBST raiz;   
    
     
     public BST() {
         this.raiz = null;
-        this.derecho = null;
-        this.izquierdo = null;
+       
+    }
+
+    public NodoBST getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(NodoBST raiz) {
+        this.raiz = raiz;
     }
     
-    // constructor de una hoja
-    public void BST(Destino root ) {
-        this.raiz = (Destino) root;  
-        this.derecho = null;
-        this.izquierdo = null;
-    }
+ 
 
     private boolean esVacio() {
         boolean vacio = true;
@@ -60,7 +58,7 @@ public class BST<X> {
             imprimir(raiz.derecho);
         }
     }
-    public void insertar( Sitio nuevo ) {
+    public void insertar(Destino nuevo ) {
         NodoBST newNodo = new NodoBST(nuevo);
         if (raiz == null) {
             raiz = newNodo;
@@ -72,9 +70,9 @@ public class BST<X> {
         while (raiz != null) {
             parent = current;
             
-            System.out.println(nuevo.getID());
-            System.out.println(current.getDestinoraiz().getDireccion_exacta());
-            if (comparar(nuevo.getID() ,current.getDestinoraiz().getDireccion_exacta())==true) {
+            System.out.println(nuevo.getDireccion_exacta());
+            System.out.println(current.getSitio().getDireccion_exacta());
+            if (comparar(nuevo.getDireccion_exacta(),current.getSitio().getDireccion_exacta())==true) {
                 
                 current = current.izquierdo;
                 if (current == null) {
@@ -96,13 +94,13 @@ public class BST<X> {
     }
    
     //Metodo que borra un nodo del arbol.
-    public boolean eliminarNodoSitio(Sitio sitio) { 
+    public boolean eliminarNodoSitio(Destino sitio) { 
         NodoBST parent = raiz;
         NodoBST current = raiz;
         boolean esHijoIzq = false;
-        while (current.getSitio().getID().equals(sitio.getID()) ) {
+        while (!current.getSitio().getDireccion_exacta().equals(sitio.getDireccion_exacta()) ) {
             parent = current;
-            if (comparar(current.getSitio().getID(),sitio.getID())== true) {
+            if (comparar(current.getSitio().getDireccion_exacta(),sitio.getDireccion_exacta())== true) {
                 esHijoIzq = true;
                 current = current.izquierdo;
             } else {
@@ -118,11 +116,14 @@ public class BST<X> {
         if (current.izquierdo == null && current.derecho == null) {
             if (current == raiz) {
                 raiz = null;
+                System.out.println("primer if");
             }
             if (esHijoIzq== true) {
                 parent.izquierdo = null;
+                System.out.println("segundo if");
             } else {
                 parent.derecho = null;
+                System.out.println("else");
             }
         } //CSi el nodo a eliminar solo tiene un hijo
         else if (current.derecho == null) {
