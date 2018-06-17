@@ -11,15 +11,70 @@ public class Destino {
     private int grado;
     private int minutos;
     private int segundos;
+    private String ID;
+    private int telefonoInt;
+    private String rating;
+    private String horario;
+    private String website;
 
-    public Destino(int latitud, int longitud, String fecha, String desplazamiento) {
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public int getTelefonoInt() {
+        return telefonoInt;
+    }
+
+    public void setTelefonoInt(int telefonoInt) {
+        this.telefonoInt = telefonoInt;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public Destino(String ID, int telefonoInt, String rating, String horario, String website) {//Constructor para los sitios
+        this.ID = ID;
+        this.telefonoInt = telefonoInt;
+        this.rating = rating;
+        this.horario = horario;
+        this.website = website;
+    }
+    
+    
+
+    public Destino(int latitud, int longitud, String fecha, String desplazamiento) {//constructor para busqueda por lat y long
         this.latitud = latitud;
         this.longitud = longitud;
         this.fecha = fecha;
         this.desplazamiento = desplazamiento;
     }
 
-    public Destino(String direccion_exacta, String fecha, String desplazamiento) {
+    public Destino(String direccion_exacta, String fecha, String desplazamiento) {//constructor para busqueda por direccion
         this.direccion_exacta = direccion_exacta;
         this.fecha = fecha;
         this.desplazamiento = desplazamiento;

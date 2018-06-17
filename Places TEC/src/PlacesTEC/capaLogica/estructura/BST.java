@@ -6,33 +6,31 @@
 package PlacesTEC.capaLogica.estructura;
 
 import PlacesTEC.capaLogica.logica.Destino;
-import PlacesTEC.capaLogica.logica.Sitio;
-import java.util.StringTokenizer;
+import static javax.management.Query.lt;
 
 /**
  *
  * @author sebas
  */
-public class BST {
-    private NodoBST raiz;
-   
+public class BST<X> {
+    private Destino raiz;
+    private BST derecho;
+    private BST izquierdo; 
 
-    public NodoBST getRaiz() {
-        return raiz;
-    }
-
-    public void setRaiz(NodoBST raiz) {
-        this.raiz = raiz;
-    }
+    
    
     
     public BST() {
         this.raiz = null;
+        this.derecho = null;
+        this.izquierdo = null;
     }
     
     // constructor de una hoja
     public void BST(Destino root ) {
-        this.raiz = new NodoBST(root);  
+        this.raiz = (Destino) root;  
+        this.derecho = null;
+        this.izquierdo = null;
     }
 
     private boolean esVacio() {
@@ -62,8 +60,7 @@ public class BST {
             imprimir(raiz.derecho);
         }
     }
-    
-        public void insertar( Sitio nuevo ) {
+    public void insertar( Sitio nuevo ) {
         NodoBST newNodo = new NodoBST(nuevo);
         if (raiz == null) {
             raiz = newNodo;
@@ -71,15 +68,17 @@ public class BST {
         }
         NodoBST current = raiz;
         NodoBST parent = null;
-        while (true) {
+        NodoBST temp = null;
+        while (raiz != null) {
             parent = current;
+            
             System.out.println(nuevo.getID());
             System.out.println(current.getDestinoraiz().getDireccion_exacta());
             if (comparar(nuevo.getID() ,current.getDestinoraiz().getDireccion_exacta())==true) {
                 
                 current = current.izquierdo;
                 if (current == null) {
-                    parent.izquierdo = newNodo;
+                    parent.izquierdo = newNodo;             
                     System.out.println("aqui primer agrego izquierdo");
                     return;
                     
@@ -88,12 +87,14 @@ public class BST {
                 current = current.derecho;
                 if (current == null) {
                     parent.derecho = newNodo;
+                    
                     System.out.println("aqui agrego derecho");
                     return;
                 }
             }
         }
     }
+   
     //Metodo que borra un nodo del arbol.
     public boolean eliminarNodoSitio(Sitio sitio) { 
         NodoBST parent = raiz;
