@@ -75,6 +75,11 @@ public class Principal extends javax.swing.JFrame {
 
         jButtonRutaViaje.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jButtonRutaViaje.setText("Armar una ruta de viaje");
+        jButtonRutaViaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRutaViajeActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonRutaViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 500, 510, 80));
 
         jButtonRutaCorta.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -99,7 +104,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSitiosIntActionPerformed
 
     private void jButtonRutaCortaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRutaCortaActionPerformed
-        // TODO add your handling code here:
+       VentRutaCorta crear_VentRutaR = new VentRutaCorta(this, rootPaneCheckingEnabled,this);
+       crear_VentRutaR.setVisible(true);
+       crear_VentRutaR.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }//GEN-LAST:event_jButtonRutaCortaActionPerformed
 
     private void jButtonGesLugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGesLugActionPerformed
@@ -107,6 +114,12 @@ public class Principal extends javax.swing.JFrame {
        crear_VentDest.setVisible(true);
        crear_VentDest.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }//GEN-LAST:event_jButtonGesLugActionPerformed
+
+    private void jButtonRutaViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRutaViajeActionPerformed
+       VentCrearRuta crear_VentRuta = new VentCrearRuta(this, rootPaneCheckingEnabled,this);
+       crear_VentRuta.setVisible(true);
+       crear_VentRuta.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    }//GEN-LAST:event_jButtonRutaViajeActionPerformed
 
    
     
