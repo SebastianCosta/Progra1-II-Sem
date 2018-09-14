@@ -18,6 +18,7 @@ public class Principal extends javax.swing.JFrame {
     private GestionLibrerias librerias;
     private GestionLibros libros;
     private GestionClientesPedidos usuarios;
+    
 
     public GestionLibrerias getLibrerias() {
         return librerias;

@@ -6,29 +6,31 @@ import virtuallibrarytec.capaLogica.estructuras.ListaD;
 
 
 public class GestionLibros {
-    private Lista<Libro> lista_libros;
+    private ListaD<Libro> lista_libros;
 
     
     //G&S
-    public Lista<Libro> getLista_libros() {
+
+    public ListaD<Libro> getLista_libros() {
         return lista_libros;
     }
 
-    public void setLista_libros(Lista<Libro> lista_libros) {
+    public void setLista_libros(ListaD<Libro> lista_libros) {
         this.lista_libros = lista_libros;
     }
+    
 
     
     //constructor
     public GestionLibros() {
-        this.lista_libros= new Lista<Libro>();
+        this.lista_libros= new ListaD<Libro>();
     }
     
     //en esta hay que agregar el metodo de buscar libros para la funcionalidad
     //metodos
     public void crear(String ID, String nombre, String tema, String descripcion, int cantVend, int cantDisp, int precio){
         Libro nuevoLibro = new Libro(ID,nombre,tema,descripcion,cantVend,cantDisp,precio);
-        lista_libros.agregar_final(nuevoLibro);
+        lista_libros.insertar_final(nuevoLibro);
     }
     public void eliminar(){
       //investigar metodo para buscar elemento en la lista  

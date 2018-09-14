@@ -22,9 +22,9 @@ public class GestionClientesPedidos {
 
     }
     
-    public void crear(String cedula, String nombre, String direccion, String telefono, String correo, Lista<Libro> libros_compra){
-        Cliente nuevo_Usuario = new Cliente(cedula,nombre,direccion,telefono,correo,libros_compra);
-        this.lista_clientes.agregar_inicio(nuevo_Usuario);
+    public void crear(String cedula, String nombre, String direccion, String telefono, String correo){
+        Cliente nuevo_Usuario = new Cliente(cedula,nombre,direccion,telefono,correo);
+        this.lista_clientes.agregar_final(nuevo_Usuario);
     }
     
     /**
@@ -39,7 +39,7 @@ public class GestionClientesPedidos {
      *
      */
     public void eliminar(){
-        lista_clientes.elim_final();
+        lista_clientes.elim_inicio();
     }
     
     public void atender( int cant){

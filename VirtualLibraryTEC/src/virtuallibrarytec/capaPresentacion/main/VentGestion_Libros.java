@@ -9,7 +9,11 @@ package virtuallibrarytec.capaPresentacion.main;
 import virtuallibrarytec.capaLogica.utils.ModeladorTablas;
 import javax.swing.JTable;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import virtuallibrarytec.capaLogica.estructuras.Nodo;
+import virtuallibrarytec.capaLogica.estructuras.NodoD;
+import virtuallibrarytec.capaLogica.estructuras.NodoS;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibros;
+import virtuallibrarytec.capaLogica.logicaNeogicos.Libro;
 
 /**
  *
@@ -75,38 +79,40 @@ public class VentGestion_Libros extends javax.swing.JDialog {
     /**
      *
      */
-   /** public void actualizarTabla() {
-        if (principal.getVehiculos().getLista_vehiculos().esVacia()) {
+    public void actualizarTabla() {
+        if (principal.getLibros().getLista_libros().esVacia()) {
             ModeladorTablas.vaciarTabla(Tabla_Libros);
         } else {
-            ModeladorTablas.vaciarTabla(Tabla_Vehiculos);
+            ModeladorTablas.vaciarTabla(Tabla_Libros);
             Object[] filaNueva;
-            NodoD<Vehiculo> temp = principal.getVehiculos().getLista_vehiculos().getCabeza();
-            for (int i = 0; i < principal.getVehiculos().getLista_vehiculos().getTamano(); i++) {
-                filaNueva = new Object[]{temp.getElemento().getMarca(),
-                    temp.getElemento().getModelo(),temp.getElemento().getTipo(),temp.getElemento().getDescripcion(),temp.getElemento().getCilindrada(),temp.getElemento().getTipo_combustible(),temp.getElemento().getTransmision(),temp.getElemento().getColores(),temp.getElemento().getLista_extras(),temp.getElemento().getCant_disponible(),temp.getElemento().getPrecio()};
-                ModeladorTablas.nuevaFila(Tabla_Vehiculos, filaNueva);
+            NodoD <Libro> temp = principal.getLibros().getLista_libros().getCabeza();
+            for (int i = 0; i < principal.getLibros().getLista_libros().getTamano(); i++) {
+                filaNueva = new Object[]{temp.getElemento().getID(),temp.getElemento().getNombre(),
+                    temp.getElemento().getTema(),temp.getElemento().getDescripcion(),temp.getElemento().getCantDisp(),
+                    temp.getElemento().getCantVend(),temp.getElemento().getPrecio()
+                    };
+                ModeladorTablas.nuevaFila(Tabla_Libros, filaNueva);
                 temp = temp.getSiguiente();
             }
 
         }
-    }**/
+    }
 
     /**
      *
      * @throws Exception
      */
     public void eliminarDesdeTabla() throws Exception {
-        //principal.getVehiculos().getLista_vehiculos().eliminar(Tabla_Vehiculos.getSelectedRow());
+        principal.getLibros().getLista_libros().eliminar(Tabla_Libros.getSelectedRow());
         //Tabla_Agencias.remove(Tabla_Agencias.getSelectedRow());
         this.dispose();
         
         VentGestion_Libros crear_Libro = new VentGestion_Libros(principal, rootPaneCheckingEnabled,principal);
         
-       Object[] columnasLibros = new Object[] {"ID","Nombre","Tema","Descripción","Cantidad Vendida","Cantidad Disponible","Precio"};        
+        Object[] columnasLibros = new Object[] {"ID","Nombre","Tema","Descripción","Cantidad Vendida","Cantidad Disponible","Precio"};        
         crear_Libro.getTabla_Libros().setModel(ModeladorTablas.generarModeloDeTabla(7, columnasLibros));
         crear_Libro.getTabla_Libros().setAutoCreateRowSorter(false);
-        //crear_Vehiculo.actualizarTabla();
+        crear_Libro.actualizarTabla();
         
         crear_Libro.setVisible(true);
         crear_Libro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

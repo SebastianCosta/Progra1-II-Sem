@@ -179,19 +179,22 @@ public class VentCrear_Libro extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAgregar_LibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregar_LibroActionPerformed
-       String marca;
-      
-       int cant_disponible;
-       int precio;
+       String ID,nombre,tema,descripcion;
+       int cantdispo,cantVend, precio;
        
-       //marca = this.jTextFieldNombre_Vehiculo.getText();
+       ID = this.jTextFieldID.getText();
+       nombre = this.jTextFieldNombre.getText();
+       tema = this.jTextFieldTema.getText();
+       descripcion = this.jTextFieldDescripcion.getText();
+       cantdispo = Integer.parseInt(this.jTextFieldCantidad.getText());
+       cantVend = Integer.parseInt(this.jTextFieldCantVen.getText());
+       precio = Integer.parseInt(this.jTextFieldPrecio.getText());
       
-       //cant_disponible = Integer.parseInt(this.jTextFieldCantidad.getText());
-       //precio = Integer.parseInt(this.jTextFieldPrecio.getText());
+      
        
-        //ventGestionVehiculos.getPrincipal().getVehiculos().crear(marca,modelo,tipo,descripcion,cilindrada,tipo_combustible,transmision,colores,lista_extras,cant_disponible,precio); 
-        //System.out.println(ventGestionVehiculos.getPrincipal().getVehiculos().consultar());
-        //ventGestionVehiculos.actualizarTabla();
+        ventGestionLibros.getPrincipal().getLibros().crear(ID,nombre,tema,descripcion, cantdispo,cantVend, precio);
+        System.out.println(ventGestionLibros.getPrincipal().getLibros().consultar());
+        ventGestionLibros.actualizarTabla();
 
         
         

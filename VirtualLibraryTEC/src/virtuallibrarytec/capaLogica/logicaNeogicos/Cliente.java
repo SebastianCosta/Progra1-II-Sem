@@ -61,7 +61,7 @@ public class Cliente {
         return "Cliente{" + "cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", correo=" + correo + ", libros_compra=" + libros_compra + '}';
     }
 
-    public Cliente(String cedula, String nombre, String direccion, String telefono, String correo, Lista<Libro> libros_compra) {
+    public Cliente(String cedula, String nombre, String direccion, String telefono, String correo) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.direccion = direccion;

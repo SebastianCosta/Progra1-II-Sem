@@ -10,7 +10,9 @@ import virtuallibrarytec.capaLogica.utils.ModeladorTablas;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import virtuallibrarytec.capaLogica.estructuras.NodoD;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibrerias;
+import virtuallibrarytec.capaLogica.logicaNeogicos.Libreria;
 
 /**
  *
@@ -66,37 +68,38 @@ public final class VentGestion_Librerias extends javax.swing.JDialog {
     /**
      *
      */
-    /**
+    
     public void actualizarTabla() {
-        if (principal.getGestion_agencias().getLista_agencias().esVacia()) {
+        if (principal.getLibrerias().getLista_librerias().esVacia()) {
             ModeladorTablas.vaciarTabla(Tabla_Librerias);
         } else {
             ModeladorTablas.vaciarTabla(Tabla_Librerias);
             Object[] filaNueva;
-            NodoD<Agencia> temp = principal.getGestion_agencias().getLista_agencias().getCabeza();
-            for (int i = 0; i < principal.getGestion_agencias().getLista_agencias().getTamano(); i++) {
-                filaNueva = new Object[]{temp.getElemento().getNombreAgencia(),
-                    temp.getElemento().getCedulaJuridica()};
+            NodoD<Libreria> temp = principal.getLibrerias().getLista_librerias().getCabeza();
+            for (int i = 0; i < principal.getLibrerias().getLista_librerias().getTamano(); i++) {
+                filaNueva = new Object[]{temp.getElemento().getNombre(),
+                    temp.getElemento().getPais(),temp.getElemento().getHorario(),
+                    temp.getElemento().getUbicacion(),temp.getElemento().getNumero()};
                 ModeladorTablas.nuevaFila(Tabla_Librerias, filaNueva);
                 temp = temp.getSiguiente();
             }
 
         }
-    }**/
+    }
 
     /**
      *
      * @throws Exception
      */
     public void eliminarDesdeTabla() throws Exception {
-        //principal.getGestion_agencias().getLista_agencias().eliminar(Tabla_Librerias.getSelectedRow());
+        principal.getLibrerias().getLista_librerias().eliminar(Tabla_Librerias.getSelectedRow());
         //Tabla_Agencias.remove(Tabla_Agencias.getSelectedRow());
         this.dispose();
         VentGestion_Librerias crear_Libreria = new VentGestion_Librerias(principal, rootPaneCheckingEnabled,principal);
         Object[] columnasAgencias = new Object[] {"Nombre","País","Ubicación","Horario","Número"};        
         crear_Libreria.getTabla_Librerias().setModel(ModeladorTablas.generarModeloDeTabla(5, columnasAgencias));
         crear_Libreria.getTabla_Librerias().setAutoCreateRowSorter(false);
-       // crear_Agencia.actualizarTabla();
+        crear_Libreria.actualizarTabla();
         crear_Libreria.setVisible(true);
         crear_Libreria.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }

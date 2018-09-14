@@ -5,12 +5,38 @@
  */
 package virtuallibrarytec.capaPresentacion.main;
 
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import virtuallibrarytec.capaLogica.logicaNeogicos.GestionClientesPedidos;
+import virtuallibrarytec.capaLogica.utils.ModeladorTablas;
+import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibrerias;
+import virtuallibrarytec.capaLogica.logicaNeogicos.Libreria;
+
 /**
  *
  * @author sebas
  */
 public class VentRegistroCompras extends javax.swing.JDialog {
     private Principal principal;
+    private GestionClientesPedidos clientes;
+
+    public Principal getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
+    }
+
+    public GestionClientesPedidos getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(GestionClientesPedidos clientes) {
+        this.clientes = clientes;
+    }
+    
+    
+    
     /**
      * Creates new form VentRegistroCompras
      */
@@ -59,6 +85,11 @@ public class VentRegistroCompras extends javax.swing.JDialog {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Registarse y empezar a comprar Libros");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabelNombre.setText("Nombre:");
 
@@ -112,7 +143,7 @@ public class VentRegistroCompras extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabeltitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jLabelsubtitulo)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -141,6 +172,28 @@ public class VentRegistroCompras extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String cedula,nombre,direccion,telefono,correo;
+        
+        cedula = this.jTextFieldCedula.getText();
+        nombre = this.jTextFieldNombre.getText();
+        direccion = this.jTextFieldDireccion.getText();
+        telefono = this.jTextFieldTelefono.getText();
+        correo = this.jTextFieldcorreo.getText();
+        
+        
+        principal.getUsuarios().crear(cedula, nombre, direccion, telefono, correo);
+        System.out.println( principal.getUsuarios().consultar());  
+        //falta actualizar tabla
+            
+        this.dispose();
+        VentComprar crear_Agencia = new VentComprar(this, rootPaneCheckingEnabled,this);
+        crear_Agencia.setVisible(true);
+        crear_Agencia.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
    
 

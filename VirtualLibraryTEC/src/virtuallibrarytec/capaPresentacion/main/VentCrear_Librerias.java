@@ -158,7 +158,7 @@ public class VentCrear_Librerias extends javax.swing.JDialog {
        
        ventGestionLibreria.getPrincipal().getLibrerias().crear(nombre,pais,ubicacion,horario,numero);
        System.out.println(ventGestionLibreria.getPrincipal().getLibrerias().consultar());
-       //ventGestionLibreria.actualizarTabla();
+       ventGestionLibreria.actualizarTabla();
        
         
        this.dispose();

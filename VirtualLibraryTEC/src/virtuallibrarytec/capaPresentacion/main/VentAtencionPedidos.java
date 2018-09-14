@@ -41,6 +41,9 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
         this.principal = principal;
         
     }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

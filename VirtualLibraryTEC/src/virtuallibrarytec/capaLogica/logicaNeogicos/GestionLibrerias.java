@@ -32,14 +32,6 @@ public class GestionLibrerias {
         return lista_librerias.toString();
     }
     
-    /**
-     *
-     * @param cedulaJuridica
-     * @throws Exception
-     */
-    public void eliminar(String cedulaJuridica) throws Exception{
-        //lista_agencias.eliminar(buscar(cedulaJuridica));
-    }
    
    
     
