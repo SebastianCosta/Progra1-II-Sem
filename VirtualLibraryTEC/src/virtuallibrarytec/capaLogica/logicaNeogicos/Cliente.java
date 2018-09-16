@@ -60,7 +60,11 @@ public class Cliente {
     public String toString() {
         return "Cliente{" + "cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", correo=" + correo + ", libros_compra=" + libros_compra + '}';
     }
-
+    public void AgregarLibro(String ID, String nombre, String tema, String descripcion, int precio){
+        Libro nuevoLibro = new Libro(ID,nombre,tema,descripcion,precio);
+        this.libros_compra.agregar_inicio(nuevoLibro);
+                //.insertar_final(nuevoLibro);
+    }
     public Cliente(String cedula, String nombre, String direccion, String telefono, String correo) {
         this.cedula = cedula;
         this.nombre = nombre;

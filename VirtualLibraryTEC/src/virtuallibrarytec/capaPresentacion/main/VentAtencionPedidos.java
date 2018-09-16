@@ -6,6 +6,13 @@
 package virtuallibrarytec.capaPresentacion.main;
 
 import javax.swing.JTable;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import virtuallibrarytec.capaLogica.estructuras.NodoD;
+import virtuallibrarytec.capaLogica.estructuras.NodoS;
+import virtuallibrarytec.capaLogica.logicaNeogicos.Cliente;
+import virtuallibrarytec.capaLogica.logicaNeogicos.GestionClientesPedidos;
+import virtuallibrarytec.capaLogica.logicaNeogicos.Libreria;
+import virtuallibrarytec.capaLogica.utils.ModeladorTablas;
 
 /**
  *
@@ -13,6 +20,17 @@ import javax.swing.JTable;
  */
 public class VentAtencionPedidos extends javax.swing.JDialog {
     private Principal principal;
+    private GestionClientesPedidos clientes;
+
+    public GestionClientesPedidos getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(GestionClientesPedidos clientes) {
+        this.clientes = clientes;
+    }
+    
+    
 
     public Principal getPrincipal() {
         return principal;
@@ -23,11 +41,11 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
     }
 
     public JTable getjTablePedidos() {
-        return jTablePedidos;
+        return Tabla_Pedidos;
     }
 
     public void setjTablePedidos(JTable jTablePedidos) {
-        this.jTablePedidos = jTablePedidos;
+        this.Tabla_Pedidos = jTablePedidos;
     }
     
     
@@ -42,8 +60,23 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
         
     }
     
-    
-    
+    public void actualizarTabla() {
+        if (principal.getUsuarios().getLista_clientes().esVacia()) {
+            ModeladorTablas.vaciarTabla(Tabla_Pedidos);
+        } else {
+            ModeladorTablas.vaciarTabla(Tabla_Pedidos);
+            Object[] filaNueva;
+            NodoS<Cliente> temp = principal.getUsuarios(). getLista_clientes().getCabeza();
+            for (int i = 0; i < principal.getUsuarios().getLista_clientes().getTamano(); i++) {
+                filaNueva = new Object[]{temp.getContiene().getNombre(),temp.getContiene().getLibros_compra().toString()};
+                ModeladorTablas.nuevaFila(Tabla_Pedidos, filaNueva);
+                temp = temp.getSiguiente();
+            }
+
+        }
+    }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,16 +89,17 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
 
         jLabeltitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePedidos = new javax.swing.JTable();
+        Tabla_Pedidos = new javax.swing.JTable();
         jButtonAtender = new javax.swing.JButton();
         jButtonVerLibro = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabeltitulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabeltitulo.setText("Atención de Pedidos");
 
-        jTablePedidos.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -76,57 +110,84 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTablePedidos);
+        jScrollPane1.setViewportView(Tabla_Pedidos);
 
         jButtonAtender.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonAtender.setText("Atender");
+        jButtonAtender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtenderActionPerformed(evt);
+            }
+        });
 
         jButtonVerLibro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonVerLibro.setText("Ver Libro");
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setText("Actualizar Tabla");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(234, 234, 234)
-                .addComponent(jLabeltitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonAtender, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                    .addComponent(jButtonVerLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(54, 54, 54))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                            .addComponent(jButtonAtender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonVerLibro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabeltitulo)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(20, 20, 20)
                 .addComponent(jLabeltitulo)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jButtonAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jButtonVerLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addGap(75, 75, 75)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonVerLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtenderActionPerformed
+        principal.getUsuarios().getLista_clientes().elim_inicio();
+        this.actualizarTabla();
+    }//GEN-LAST:event_jButtonAtenderActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.actualizarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tabla_Pedidos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAtender;
     private javax.swing.JButton jButtonVerLibro;
     private javax.swing.JLabel jLabeltitulo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTablePedidos;
     // End of variables declaration//GEN-END:variables
 }

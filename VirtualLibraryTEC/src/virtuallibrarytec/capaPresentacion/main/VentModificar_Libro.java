@@ -14,7 +14,7 @@ import virtuallibrarytec.capaLogica.logicaNeogicos.Libro;
  *
  * @author sebas
  */
-public class VentCrear_Libro extends javax.swing.JDialog {
+public class VentModificar_Libro extends javax.swing.JDialog {
     private VentGestion_Libros ventGestionLibros;
     
 
@@ -24,7 +24,7 @@ public class VentCrear_Libro extends javax.swing.JDialog {
      * @param ventGestionVehiculos
      * @param modal
      */
-    public VentCrear_Libro(java.awt.Dialog parent, boolean modal,VentGestion_Libros ventGestionLibros) {
+    public VentModificar_Libro(java.awt.Dialog parent, boolean modal,VentGestion_Libros ventGestionLibros) {
         super(parent, modal);
         initComponents();
         this.ventGestionLibros = ventGestionLibros;
@@ -71,7 +71,7 @@ public class VentCrear_Libro extends javax.swing.JDialog {
         jButtonFoto.setText("Agregar Foto");
 
         jButtonAgregar_Libro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonAgregar_Libro.setText("Agregar Libro");
+        jButtonAgregar_Libro.setText("Modificar Libro");
         jButtonAgregar_Libro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAgregar_LibroActionPerformed(evt);

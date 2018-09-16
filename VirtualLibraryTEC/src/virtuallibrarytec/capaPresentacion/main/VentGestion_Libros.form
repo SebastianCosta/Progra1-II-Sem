@@ -112,6 +112,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar veh&#xed;culo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModificar_LibroActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTitulo">
       <Properties>

@@ -12,12 +12,7 @@ package virtuallibrarytec.capaPresentacion.main;
 public class VentCrear_Librerias extends javax.swing.JDialog {
     private VentGestion_Librerias ventGestionLibreria;
 
-    /**
-     * Creates new form VentGestion_Agencias1
-     * @param parent
-     * @param modal
-     * @param ventGestionAgencias
-     */
+    
     public VentCrear_Librerias(java.awt.Dialog parent, boolean modal,VentGestion_Librerias ventGestionLibreria) {
         super(parent, modal);
         initComponents();

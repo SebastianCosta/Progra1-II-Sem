@@ -146,7 +146,7 @@ public class Principal extends javax.swing.JFrame {
     Object[] columnasLibrerias = new Object[] {"Nombre","País","Ubicación","Horario","Número"};        
     crear_Libreria.getTabla_Librerias().setModel(ModeladorTablas.generarModeloDeTabla(5, columnasLibrerias));
     crear_Libreria.getTabla_Librerias().setAutoCreateRowSorter(false);
-    //crear_Agencia.actualizarTabla();
+    crear_Libreria.actualizarTabla();
     
     crear_Libreria.setVisible(true);
     crear_Libreria.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -158,7 +158,7 @@ public class Principal extends javax.swing.JFrame {
     Object[] columnasLibros = new Object[] {"ID","Nombre","Tema","Descripción","Cantidad Vendida","Cantidad Disponible","Precio"};        
     crear_Libro.getTabla_Libros().setModel(ModeladorTablas.generarModeloDeTabla(7, columnasLibros));
     crear_Libro.getTabla_Libros().setAutoCreateRowSorter(false);
-    //crear_Agencia.actualizarTabla();
+    crear_Libro.actualizarTabla();
     
     crear_Libro.setVisible(true);
     crear_Libro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -170,7 +170,7 @@ public class Principal extends javax.swing.JFrame {
         Object[] columnasLibros = new Object[] {"ID","Nombre","Tema","Descripción","Cantidad Vendida","Cantidad Disponible","Precio"};        
         crear_Libro.getTabla_Libros().setModel(ModeladorTablas.generarModeloDeTabla(7, columnasLibros));
         crear_Libro.getTabla_Libros().setAutoCreateRowSorter(false);
-        //crear_Agencia.actualizarTabla();
+        
 
         crear_Libro.setVisible(true);
         crear_Libro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -188,6 +188,7 @@ public class Principal extends javax.swing.JFrame {
        Object[] columnasLibros = new Object[] {"Nombre del cliente","Libros"};        
         ventLA.getjTablePedidos().setModel(ModeladorTablas.generarModeloDeTabla(2, columnasLibros));
         ventLA.getjTablePedidos().setAutoCreateRowSorter(false);
+        ventLA.actualizarTabla();
        
        
        ventLA.setVisible(true);

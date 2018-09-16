@@ -167,6 +167,11 @@ public class VentGestion_Libros extends javax.swing.JDialog {
         jButtonConsultar_Libro.setText("Consultar Libro");
 
         jButtonModificar_Libro.setText("Modificar vehículo");
+        jButtonModificar_Libro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificar_LibroActionPerformed(evt);
+            }
+        });
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabelTitulo.setText("Gestión de Libros");
@@ -228,6 +233,20 @@ public class VentGestion_Libros extends javax.swing.JDialog {
             //ystem.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_jButtonEliminar_LibroActionPerformed
+
+    private void jButtonModificar_LibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificar_LibroActionPerformed
+         try {
+
+            eliminarDesdeTabla();
+            
+
+        } catch (Exception ex) {
+            //ystem.out.println(ex.getMessage());
+        }
+        VentCrear_Libro modificar_Libro = new VentCrear_Libro(this, rootPaneCheckingEnabled, this);
+       modificar_Libro.setVisible(true);
+       modificar_Libro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    }//GEN-LAST:event_jButtonModificar_LibroActionPerformed
 
     
 

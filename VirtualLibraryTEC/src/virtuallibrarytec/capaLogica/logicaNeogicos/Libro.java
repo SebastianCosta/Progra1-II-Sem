@@ -5,11 +5,26 @@ package virtuallibrarytec.capaLogica.logicaNeogicos;
  
  */
 public class Libro {
-    //agregar Libreria libreria;
+    private Libreria libreriapertenece;
     private String ID,nombre,tema,descripcion;
     private int cantVend,cantDisp,precio;
     //falta foto
 
+    public Libreria getLibreriapertenece() {
+        return libreriapertenece;
+    }
+
+    public void setLibreriapertenece(Libreria libreriapertenece) {
+        this.libreriapertenece = libreriapertenece;
+    }
+    
+    public void actualizarcantidad(){
+        this.cantDisp --;
+        this.cantVend ++;
+    }
+
+    
+    
     public String getID() {
         return ID;
     }
@@ -70,6 +85,27 @@ public class Libro {
     public String toString() {
         return "Libro{" + "ID=" + ID + ", nombre=" + nombre + ", tema=" + tema + ", descripcion=" + descripcion + ", cantVend=" + cantVend + ", cantDisp=" + cantDisp + ", precio=" + precio + '}';
     }
+
+    public Libro(Libreria libreriapertenece, String ID, String nombre, String tema, String descripcion, int cantVend, int cantDisp, int precio) {
+        this.libreriapertenece = libreriapertenece;
+        this.ID = ID;
+        this.nombre = nombre;
+        this.tema = tema;
+        this.descripcion = descripcion;
+        this.cantVend = cantVend;
+        this.cantDisp = cantDisp;
+        this.precio = precio;
+    }
+
+    public Libro(String ID, String nombre, String tema, String descripcion, int precio) {
+        this.ID = ID;
+        this.nombre = nombre;
+        this.tema = tema;
+        this.descripcion = descripcion;
+        this.precio = precio;
+    }
+
+   
     
     
 
@@ -81,6 +117,7 @@ public class Libro {
         this.cantVend = cantVend;
         this.cantDisp = cantDisp;
         this.precio = precio;
+        this.libreriapertenece = libreriapertenece;
     }
     
     

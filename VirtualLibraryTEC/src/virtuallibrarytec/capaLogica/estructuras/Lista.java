@@ -120,6 +120,56 @@ public class Lista<T> {
         this.tamano--;
     }
     
+     /*public void deleteNode(int position) 
+    { 
+        // If linked list is empty 
+        if (cabeza == null) 
+            return; 
+  
+        // Store head node 
+        NodoS temp = cabeza; 
+  
+        // If head needs to be removed 
+        if (position == 0) 
+        { 
+            cabeza= temp.getSiguiente();   // Change head 
+            return; 
+        } 
+  
+        // Find previous node of the node to be deleted 
+        for (int i=0; temp!=null && i<position-1; i++) 
+            temp = temp.getSiguiente(); 
+  
+        // If position is more than number of ndoes 
+        if (temp == null || temp.getSiguiente() == null) 
+            return; 
+  
+        // Node temp->next is the node to be deleted 
+        // Store pointer to the next of node to be deleted 
+        NodoS next = temp.getSiguiente().getSiguiente(); 
+  
+        temp.getSiguiente() = next;  // Unlink the deleted node from list 
+    }*/ 
+    
+    public void eliminar(int pos){ 
+        if (pos == 0){
+            cabeza=cabeza.getSiguiente();
+        }
+        else{
+            int cont = 0; 
+            NodoS temporal = cabeza;
+            while(cont < pos-1)
+            {
+                temporal = temporal.getSiguiente();
+                //System.out.print("["+temporal.getElemento()+"]");
+                cont++;
+            }
+            temporal.setSiguiente(temporal.getSiguiente().getSiguiente());
+        } 
+        tamano--;
+             
+    }
+    
     /**
      *
      * @param elemento

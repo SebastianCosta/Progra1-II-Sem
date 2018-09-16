@@ -18,6 +18,7 @@ import virtuallibrarytec.capaLogica.logicaNeogicos.Libreria;
 public class VentRegistroCompras extends javax.swing.JDialog {
     private Principal principal;
     private GestionClientesPedidos clientes;
+    private VentAtencionPedidos pedidos;
 
     public Principal getPrincipal() {
         return principal;
@@ -65,7 +66,7 @@ public class VentRegistroCompras extends javax.swing.JDialog {
         jLabeltitulo = new javax.swing.JLabel();
         jTextFieldTelefono = new javax.swing.JTextField();
         jLabelsubtitulo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonRegistro = new javax.swing.JButton();
         jLabelNombre = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jLabelCedula = new javax.swing.JLabel();
@@ -83,11 +84,11 @@ public class VentRegistroCompras extends javax.swing.JDialog {
 
         jLabelsubtitulo.setText("Por favor ingrese la siguiente información para empezar a comprar libros:");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Registarse y empezar a comprar Libros");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegistro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonRegistro.setText("Registarse y empezar a comprar Libros");
+        jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonRegistroActionPerformed(evt);
             }
         });
 
@@ -135,7 +136,7 @@ public class VentRegistroCompras extends javax.swing.JDialog {
                         .addComponent(jLabeltitulo)
                         .addGap(118, 118, 118))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(130, 130, 130))))
         );
         layout.setVerticalGroup(
@@ -166,14 +167,14 @@ public class VentRegistroCompras extends javax.swing.JDialog {
                     .addComponent(jLabelTelefono)
                     .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
         String cedula,nombre,direccion,telefono,correo;
         
         cedula = this.jTextFieldCedula.getText();
@@ -186,19 +187,26 @@ public class VentRegistroCompras extends javax.swing.JDialog {
         principal.getUsuarios().crear(cedula, nombre, direccion, telefono, correo);
         System.out.println( principal.getUsuarios().consultar());  
         //falta actualizar tabla
+        
+        
+        
             
         this.dispose();
-        VentComprar crear_Agencia = new VentComprar(this, rootPaneCheckingEnabled,this);
-        crear_Agencia.setVisible(true);
-        crear_Agencia.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        //abre la nueva ventana 
+        VentComprarLibros crear_compra = new VentComprarLibros(this, rootPaneCheckingEnabled,this);
+         Object[] columnasLibros = new Object[] {"ID","Nombre","Tema","Descripción","Precio"};        
+         crear_compra.getTabla_Libros().setModel(ModeladorTablas.generarModeloDeTabla(5, columnasLibros));
+         crear_compra.getTabla_Libros().setAutoCreateRowSorter(false);
+        crear_compra.setVisible(true);
+         crear_compra.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+           
         
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonRegistroActionPerformed
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonRegistro;
     private javax.swing.JLabel jLabelCedula;
     private javax.swing.JLabel jLabelDireccion;
     private javax.swing.JLabel jLabelNombre;
