@@ -84,8 +84,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextFieldCantidad" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldCantVen" min="-2" pref="521" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldCantidadDispoible" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldCantVendida" min="-2" pref="521" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -125,13 +125,13 @@
               <Component id="jTextFieldDescripcion" min="-2" pref="106" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextFieldCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldCantidadDispoible" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelCantVend" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldCantVen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldCantVendida" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -199,7 +199,7 @@
         <Property name="text" type="java.lang.String" value="Cantidad disponible:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldCantidad">
+    <Component class="javax.swing.JTextField" name="jTextFieldCantidadDispoible">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelNombre">
       <Properties>
@@ -227,7 +227,7 @@
         <Property name="text" type="java.lang.String" value="Cantidad vendida:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldCantVen">
+    <Component class="javax.swing.JTextField" name="jTextFieldCantVendida">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelLibreria">
       <Properties>

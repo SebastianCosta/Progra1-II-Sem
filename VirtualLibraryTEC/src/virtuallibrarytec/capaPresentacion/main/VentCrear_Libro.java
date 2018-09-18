@@ -48,7 +48,7 @@ public class VentCrear_Libro extends javax.swing.JDialog {
         jButtonAgregar_Libro = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelCantidad = new javax.swing.JLabel();
-        jTextFieldCantidad = new javax.swing.JTextField();
+        jTextFieldCantidadDispoible = new javax.swing.JTextField();
         jLabelNombre = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jLabelID = new javax.swing.JLabel();
@@ -56,7 +56,7 @@ public class VentCrear_Libro extends javax.swing.JDialog {
         jLabelTema = new javax.swing.JLabel();
         jTextFieldTema = new javax.swing.JTextField();
         jLabelCantVend = new javax.swing.JLabel();
-        jTextFieldCantVen = new javax.swing.JTextField();
+        jTextFieldCantVendida = new javax.swing.JTextField();
         jLabelLibreria = new javax.swing.JLabel();
         jTextFieldLibreria = new javax.swing.JTextField();
 
@@ -144,8 +144,8 @@ public class VentCrear_Libro extends javax.swing.JDialog {
                                     .addComponent(jLabelCantidad))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldCantidad)
-                                    .addComponent(jTextFieldCantVen, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jTextFieldCantidadDispoible)
+                                    .addComponent(jTextFieldCantVendida, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -174,12 +174,12 @@ public class VentCrear_Libro extends javax.swing.JDialog {
                 .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCantidadDispoible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCantidad))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCantVend)
-                    .addComponent(jTextFieldCantVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCantVendida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPrecio)
@@ -204,13 +204,13 @@ public class VentCrear_Libro extends javax.swing.JDialog {
        nombre = this.jTextFieldNombre.getText();
        tema = this.jTextFieldTema.getText();
        descripcion = this.jTextFieldDescripcion.getText();
-       cantdispo = Integer.parseInt(this.jTextFieldCantidad.getText());
-       cantVend = Integer.parseInt(this.jTextFieldCantVen.getText());
+       cantdispo = Integer.parseInt(this.jTextFieldCantidadDispoible.getText());
+       cantVend = Integer.parseInt(this.jTextFieldCantVendida.getText());
        precio = Integer.parseInt(this.jTextFieldPrecio.getText());
       
       
        
-        ventGestionLibros.getPrincipal().getLibros().crear(ID,nombre,tema,descripcion, cantdispo,cantVend, precio);
+        ventGestionLibros.getPrincipal().getLibros().crear(ID,nombre,tema,descripcion, cantVend,cantdispo, precio);
         System.out.println(ventGestionLibros.getPrincipal().getLibros().consultar());
         
         //agrega el nuevo libro a la lista de libros de una determinada libreria 
@@ -218,8 +218,8 @@ public class VentCrear_Libro extends javax.swing.JDialog {
             NodoD<Libreria> temp = ventGestionLibros.getPrincipal().getLibrerias().getLista_librerias().getCabeza();
             for (int i = 0; i < ventGestionLibros.getPrincipal().getLibrerias().getLista_librerias().getTamano(); i++) {
                 if (this.jTextFieldLibreria.getText().equals(temp.getElemento().getNombre())){
-                    temp.getElemento().getLista_libros().agregar_inicio(libronuevo);
-                    System.out.println(temp.getElemento().getLista_libros().toString());
+                    temp.getElemento().getLista_libros().agregar_final(libronuevo);
+                    System.out.println("aqui");
         
         
             }
@@ -247,8 +247,8 @@ public class VentCrear_Libro extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelPrecio;
     private javax.swing.JLabel jLabelTema;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JTextField jTextFieldCantVen;
-    private javax.swing.JTextField jTextFieldCantidad;
+    private javax.swing.JTextField jTextFieldCantVendida;
+    private javax.swing.JTextField jTextFieldCantidadDispoible;
     private javax.swing.JTextField jTextFieldDescripcion;
     private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldLibreria;

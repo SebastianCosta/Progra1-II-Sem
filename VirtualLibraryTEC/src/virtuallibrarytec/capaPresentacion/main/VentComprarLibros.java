@@ -236,13 +236,15 @@ public class VentComprarLibros extends javax.swing.JDialog {
             for (int i = 0; i < ventRegistro.getPrincipal().getLibros().getLista_libros().getTamano(); i++) {
                 if ( ID.equals(temporal.getElemento().getID())){
                     temporal.getElemento().actualizarcantidad();
-                    System.out.println(temporal.getElemento().getCantDisp());
+                    System.out.println("sirve");
+                    break;
+                    
         
         
             }}
 
        // agrega el libro al carrito de compras del cliente
-       ventRegistro.getPrincipal().getLibros().getLista_libros().getApuntando().getElemento().actualizarcantidad();
+      
        Libro libronuevo = new Libro(ID,Nombre,Tema,Descripcion,Integer.parseInt(Precio));
        
        String cedula = this.jTextFieldCedula.getText();
@@ -253,7 +255,7 @@ public class VentComprarLibros extends javax.swing.JDialog {
                 if (cedula.equals(temp.getContiene().getCedula())){
                     temp.getContiene().agregaraLista(libronuevo);
                     System.out.println(temp.getContiene().getLibros_compra().toString());
-              
+                    break;
         
     }//GEN-LAST:event_jButtonComprar_LibroActionPerformed
             }}

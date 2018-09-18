@@ -88,8 +88,8 @@ public class VentGestion_Libros extends javax.swing.JDialog {
             NodoD <Libro> temp = principal.getLibros().getLista_libros().getCabeza();
             for (int i = 0; i < principal.getLibros().getLista_libros().getTamano(); i++) {
                 filaNueva = new Object[]{temp.getElemento().getID(),temp.getElemento().getNombre(),
-                    temp.getElemento().getTema(),temp.getElemento().getDescripcion(),temp.getElemento().getCantDisp(),
-                    temp.getElemento().getCantVend(),temp.getElemento().getPrecio()
+                    temp.getElemento().getTema(),temp.getElemento().getDescripcion(),temp.getElemento().getCantVend(),
+                    temp.getElemento().getCantDisp(),temp.getElemento().getPrecio()
                     };
                 ModeladorTablas.nuevaFila(Tabla_Libros, filaNueva);
                 temp = temp.getSiguiente();
