@@ -5,6 +5,7 @@
  */
 package virtuallibrarytec.capaPresentacion.main;
 
+import virtuallibrarytec.capaLogica.logicaNeogicos.GestionBusqueda;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionClientesPedidos;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibrerias;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibros;
@@ -18,6 +19,16 @@ public class Principal extends javax.swing.JFrame {
     private GestionLibrerias librerias;
     private GestionLibros libros;
     private GestionClientesPedidos usuarios;
+    private GestionBusqueda historial;
+
+    public GestionBusqueda getHistorial() {
+        return historial;
+    }
+
+    public void setHistorial(GestionBusqueda historial) {
+        this.historial = historial;
+    }
+   
     
 
     public GestionLibrerias getLibrerias() {

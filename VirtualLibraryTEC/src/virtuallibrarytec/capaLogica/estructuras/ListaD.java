@@ -108,6 +108,7 @@ public class ListaD <T> {
              
     }
     
+    
      public String toString() {
         String msg = "";
         NodoD<T> temp = cabeza;

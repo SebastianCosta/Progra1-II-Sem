@@ -79,6 +79,14 @@ public class Lista<T> {
             this.apuntando = this.apuntando.getSiguiente();
         }
     }
+    public void Vaciar(){
+        for (int i = 0; i < tamano; i++) {
+            this.cabeza = null;
+            this.cabeza.setSiguiente(null);
+        }
+        
+        
+    }
     
     //Este metodo permite eliminar el nodo del inicio de la lista
 

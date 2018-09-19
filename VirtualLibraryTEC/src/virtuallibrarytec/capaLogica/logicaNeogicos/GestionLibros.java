@@ -32,6 +32,9 @@ public class GestionLibros {
         Libro nuevoLibro = new Libro(ID,nombre,tema,descripcion,cantVend,cantDisp,precio);
         lista_libros.insertar_final(nuevoLibro);
     }
+    public void agregar(Libro libronuevo){
+        lista_libros.insertar_final(libronuevo);
+    }
     public void eliminar(){
       //investigar metodo para buscar elemento en la lista  
     }

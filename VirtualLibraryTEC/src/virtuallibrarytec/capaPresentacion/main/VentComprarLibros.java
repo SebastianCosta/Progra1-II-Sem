@@ -252,13 +252,17 @@ public class VentComprarLibros extends javax.swing.JDialog {
         
             NodoS<Cliente> temp =  ventRegistro.getPrincipal().getUsuarios().getLista_clientes().getCabeza();
             for (int i = 0; i < ventRegistro.getPrincipal().getUsuarios().getLista_clientes().getTamano(); i++) {
+                System.out.println("Entro al for"+i);
+                
                 if (cedula.equals(temp.getContiene().getCedula())){
+                    System.out.println("entro al if");
                     temp.getContiene().agregaraLista(libronuevo);
+                    
                     System.out.println(temp.getContiene().getLibros_compra().toString());
                     break;
         
     }//GEN-LAST:event_jButtonComprar_LibroActionPerformed
-            }}
+           temp = temp.getSiguiente(); }}
     
     private void jButtonGestionarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionarPedidosActionPerformed
        try {

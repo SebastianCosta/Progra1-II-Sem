@@ -6,10 +6,19 @@
 package virtuallibrarytec.capaPresentacion.main;
 
 
+import static javafx.scene.input.KeyCode.T;
 import virtuallibrarytec.capaLogica.utils.ModeladorTablas;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import virtuallibrarytec.capaLogica.estructuras.Lista;
+import virtuallibrarytec.capaLogica.estructuras.ListaD;
+import virtuallibrarytec.capaLogica.estructuras.NodoD;
+import virtuallibrarytec.capaLogica.estructuras.NodoS;
+import virtuallibrarytec.capaLogica.logicaNeogicos.GestionBusqueda;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibros;
+import virtuallibrarytec.capaLogica.logicaNeogicos.Libreria;
+import virtuallibrarytec.capaLogica.logicaNeogicos.Libro;
 
 /**
  *
@@ -18,6 +27,8 @@ import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibros;
 public class VentBusqueda extends javax.swing.JDialog {
     private Principal principal;
     private GestionLibros libros;
+    private GestionBusqueda histor;
+    Lista<Libro> resultados;
 
     /**
      *
@@ -55,6 +66,46 @@ public class VentBusqueda extends javax.swing.JDialog {
         this.Tabla_Libros = Tabla_Libros;
     }
 
+    public JTextField getjTextFieldBusqueda() {
+        return jTextFieldBusqueda;
+    }
+
+    public void setjTextFieldBusqueda(JTextField jTextFieldBusqueda) {
+        this.jTextFieldBusqueda = jTextFieldBusqueda;
+    }
+
+    public JTextField getjTextFieldLibreria() {
+        return jTextFieldLibreria;
+    }
+
+    public void setjTextFieldLibreria(JTextField jTextFieldLibreria) {
+        this.jTextFieldLibreria = jTextFieldLibreria;
+    }
+
+    public JTextField getjTextFieldNombre() {
+        return jTextFieldNombre;
+    }
+
+    public void setjTextFieldNombre(JTextField jTextFieldNombre) {
+        this.jTextFieldNombre = jTextFieldNombre;
+    }
+
+    public JTextField getjTextFieldPrecio() {
+        return jTextFieldPrecio;
+    }
+
+    public void setjTextFieldPrecio(JTextField jTextFieldPrecio) {
+        this.jTextFieldPrecio = jTextFieldPrecio;
+    }
+
+    public JTextField getjTextFieldTema() {
+        return jTextFieldTema;
+    }
+
+    public void setjTextFieldTema(JTextField jTextFieldTema) {
+        this.jTextFieldTema = jTextFieldTema;
+    }
+
     
     
     
@@ -69,28 +120,128 @@ public class VentBusqueda extends javax.swing.JDialog {
         super(parent,modal);
         initComponents();
         this.principal = principal;
+        this.resultados = new Lista<Libro>();
         
     }
+    /**public void buscar(){
+        String ID = this.jTextFieldBusqueda.getText();
+        NodoD <Libro> temp = principal.getLibros().getLista_libros().getCabeza();
+        for (int i = 0;i<principal.getLibros().getLista_libros().getTamano();i++){
+            if(ID.equals(temp.getElemento().getID())){
+                
+                resultados.agregar_final(temp.getElemento());
+            }temp = temp.getSiguiente();
+            if (ID.equals(temp.getElemento().getNombre())){
+                
+                resultados.agregar_final(temp.getElemento());
+            }temp = temp.getSiguiente();
+            if (ID.equals(temp.getElemento().getTema())){
+                
+                resultados.agregar_final(temp.getElemento());
+            }temp = temp.getSiguiente();
+            if (ID.equals(temp.getElemento().getPrecio())){
+                
+                resultados.agregar_final(temp.getElemento());
+            }temp = temp.getSiguiente();
+            if (ID.equals(temp.getElemento().getDescripcion())){
+                
+                resultados.agregar_final(temp.getElemento());
+            }temp = temp.getSiguiente();
+            if (ID.equals(temp.getElemento().getLibreriapertenece())){
+                
+                resultados.agregar_final(temp.getElemento());
+            }
+            
+            
+        }
+    }*/
+    public void buscarID(){
+        String ID = this.jTextFieldBusqueda.getText();
+        NodoD <Libro> temp = principal.getLibros().getLista_libros().getCabeza();
+        for (int i = 0;i<principal.getLibros().getLista_libros().getTamano();i++){
+            if(ID.equals(temp.getElemento().getID())){
+                
+                resultados.agregar_final(temp.getElemento());
+            }temp = temp.getSiguiente();
+           
+            
+            
+        }
+    }
+    
+    
+    public void buscarNombre(){
+        String ID = this.jTextFieldNombre.getText();
+        NodoD <Libro> temp = principal.getLibros().getLista_libros().getCabeza();
+        for (int i = 0;i<principal.getLibros().getLista_libros().getTamano();i++){
+            
+            if (ID.equals(temp.getElemento().getNombre())){
+                
+                resultados.agregar_final(temp.getElemento());
+            }temp = temp.getSiguiente();  
+        }
+    }
+    public void buscarTema(){
+        String ID = this.jTextFieldTema.getText();
+        NodoD <Libro> temp = principal.getLibros().getLista_libros().getCabeza();
+        for (int i = 0;i<principal.getLibros().getLista_libros().getTamano();i++){
+            
+            if (ID.equals(temp.getElemento().getTema())){
+                
+                resultados.agregar_final(temp.getElemento());
+            }temp = temp.getSiguiente();
+            
+            
+        }
+    }
+    public void buscarPrecio(){
+       int ID = Integer.parseInt(this.jTextFieldPrecio.getText());
+        NodoD <Libro> temp = principal.getLibros().getLista_libros().getCabeza();
+        for (int i = 0;i<principal.getLibros().getLista_libros().getTamano();i++){
+            
+            if (ID == temp.getElemento().getPrecio()){
+                
+                resultados.agregar_final(temp.getElemento());
+            }temp = temp.getSiguiente();
+            
+            
+            
+        }
+    }
+    public void buscarLibreria(){
+       String ID = this.jTextFieldLibreria.getText();
+        NodoD <Libreria> temp = principal.getLibrerias().getLista_librerias().getCabeza();
+        for (int i = 0;i< principal.getLibrerias().getLista_librerias().getTamano();i++){
+            NodoS libron = temp.getElemento().getLista_libros().getCabeza();
+            if (ID.equals(temp.getElemento().getNombre().toString())){
+                resultados.agregar_final((Libro) libron.getContiene());
+               
+            } libron = libron.getSiguiente();
+            temp = temp.getSiguiente();
+            
+            
+        } 
+    }
 
-    /**
-     *
-     */
-   /** public void actualizarTabla() {
-        if (principal.getVehiculos().getLista_vehiculos().esVacia()) {
+     public void actualizarTabla() {
+        if (resultados.esVacia()) {
             ModeladorTablas.vaciarTabla(Tabla_Libros);
         } else {
-            ModeladorTablas.vaciarTabla(Tabla_Vehiculos);
+            ModeladorTablas.vaciarTabla(Tabla_Libros);
             Object[] filaNueva;
-            NodoD<Vehiculo> temp = principal.getVehiculos().getLista_vehiculos().getCabeza();
-            for (int i = 0; i < principal.getVehiculos().getLista_vehiculos().getTamano(); i++) {
-                filaNueva = new Object[]{temp.getElemento().getMarca(),
-                    temp.getElemento().getModelo(),temp.getElemento().getTipo(),temp.getElemento().getDescripcion(),temp.getElemento().getCilindrada(),temp.getElemento().getTipo_combustible(),temp.getElemento().getTransmision(),temp.getElemento().getColores(),temp.getElemento().getLista_extras(),temp.getElemento().getCant_disponible(),temp.getElemento().getPrecio()};
-                ModeladorTablas.nuevaFila(Tabla_Vehiculos, filaNueva);
+            NodoS <Libro> temp = resultados.getCabeza();
+            for (int i = 0; i < resultados.getTamano(); i++) {
+                filaNueva = new Object[]{temp.getContiene().getID(),temp.getContiene().getNombre(),
+                    temp.getContiene().getTema(),temp.getContiene().getDescripcion(),temp.getContiene().getCantVend(),
+                    temp.getContiene().getCantDisp(),temp.getContiene().getPrecio()
+                    };
+                ModeladorTablas.nuevaFila(Tabla_Libros, filaNueva);
                 temp = temp.getSiguiente();
             }
 
         }
-    }**/
+    }
+
 
     /**
      *
@@ -125,9 +276,21 @@ public class VentBusqueda extends javax.swing.JDialog {
         Tabla_Libros = new javax.swing.JTable();
         jLabelTitulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButtonBuscar = new javax.swing.JButton();
+        jTextFieldBusqueda = new javax.swing.JTextField();
+        jButtonBuscarID = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldTema = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldLibreria = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldPrecio = new javax.swing.JTextField();
+        jButtonBuscarNombre = new javax.swing.JButton();
+        jButtonBuscarPrecio = new javax.swing.JButton();
+        jButtonBuscaLibreria = new javax.swing.JButton();
+        jButtonBuscarTema = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -148,71 +311,263 @@ public class VentBusqueda extends javax.swing.JDialog {
         jLabelTitulo.setText("Búsqueda de Libros");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Ingrese la palabra clave:");
+        jLabel1.setText("Ingrese el ID:");
 
-        jButtonBuscar.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jButtonBuscar.setText("Buscar");
+        jButtonBuscarID.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonBuscarID.setText("Buscar por ID");
+        jButtonBuscarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarIDActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jButton1.setText("Ver libro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Ingrese el Nombre:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Ingrese el Tema:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setText("Ingrese el nombre de la Libreria:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setText("Ingrese el Precio:");
+
+        jButtonBuscarNombre.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonBuscarNombre.setText("Buscar por Nombre");
+        jButtonBuscarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarNombreActionPerformed(evt);
+            }
+        });
+
+        jButtonBuscarPrecio.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonBuscarPrecio.setText("Buscar por Precio");
+        jButtonBuscarPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarPrecioActionPerformed(evt);
+            }
+        });
+
+        jButtonBuscaLibreria.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonBuscaLibreria.setText("Buscar por nombre de Libreria");
+        jButtonBuscaLibreria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscaLibreriaActionPerformed(evt);
+            }
+        });
+
+        jButtonBuscarTema.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonBuscarTema.setText("Buscar por Tema");
+        jButtonBuscarTema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarTemaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jButtonBuscarID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTextFieldLibreria, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButtonBuscaLibreria, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldTema, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(33, 33, 33)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButtonBuscarPrecio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jButtonBuscarTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButtonBuscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(209, 209, 209))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(644, 644, 644)
                         .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1717, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addComponent(jLabelTitulo)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscarID, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonBuscarTema, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldTema, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldLibreria, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonBuscaLibreria, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(jButtonBuscarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
+                        .addGap(30, 30, 30)
                         .addComponent(jButton1)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(124, 124, 124))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //principal.getHistorial().agregarHistorial(temp.getElemento());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarNombreActionPerformed
+       try{
+        buscarNombre();
+       this.jTextFieldNombre.setText("");
+        this.actualizarTabla();
+        resultados.Vaciar();
+       }catch(Exception e) {
+
+    System.out.println("ERROR");
+
+}
+    }//GEN-LAST:event_jButtonBuscarNombreActionPerformed
+
+    private void jButtonBuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarIDActionPerformed
+       try{
+        buscarID();
+        this.jTextFieldBusqueda.setText("");
+        this.actualizarTabla();
+        resultados.Vaciar();
+       }catch(Exception e) {
+
+    System.out.println("ERROR");
+
+}
+
+    }//GEN-LAST:event_jButtonBuscarIDActionPerformed
+
+    private void jButtonBuscarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPrecioActionPerformed
+       try{
+        buscarPrecio();
+        this.jTextFieldPrecio.setText("");
+        this.actualizarTabla();
+        resultados.Vaciar();
+       }catch(Exception e) {
+
+    System.out.println("ERROR");
+
+}
+        
+    }//GEN-LAST:event_jButtonBuscarPrecioActionPerformed
+
+    private void jButtonBuscaLibreriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaLibreriaActionPerformed
+      //areglar para que busque
+        try{ 
+        buscarLibreria();
+        this.jTextFieldLibreria.setText("");
+        this.actualizarTabla();
+        resultados.Vaciar();
+       }catch(Exception e) {
+
+    System.out.println("ERROR");
+
+}
+    }//GEN-LAST:event_jButtonBuscaLibreriaActionPerformed
+
+    private void jButtonBuscarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarTemaActionPerformed
+        try{
+        buscarTema();
+        this.jTextFieldTema.setText("");
+        this.actualizarTabla();
+        resultados.Vaciar();
+        
+        }catch(Exception e) {
+
+                     System.out.println("ERROR");
+
+}
+        
+    }//GEN-LAST:event_jButtonBuscarTemaActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla_Libros;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonBuscaLibreria;
+    private javax.swing.JButton jButtonBuscarID;
+    private javax.swing.JButton jButtonBuscarNombre;
+    private javax.swing.JButton jButtonBuscarPrecio;
+    private javax.swing.JButton jButtonBuscarTema;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldBusqueda;
+    private javax.swing.JTextField jTextFieldLibreria;
+    private javax.swing.JTextField jTextFieldNombre;
+    private javax.swing.JTextField jTextFieldPrecio;
+    private javax.swing.JTextField jTextFieldTema;
     // End of variables declaration//GEN-END:variables
 }
