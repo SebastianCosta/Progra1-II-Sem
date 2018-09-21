@@ -307,6 +307,20 @@ public class Lista<T> {
         return msg;
     }
 
+    public void agregar_inicio(NodoS libroN) {
+      if (this.esVacia()) {
+            NodoS<T> nuevo = new NodoS(libroN);
+            cabeza = nuevo;
+            cola = cabeza;
+            tamano++;
+        } else {
+            NodoS<T> nuevo = new NodoS(libroN);
+            nuevo.setSiguiente(cabeza);
+            cabeza = nuevo;
+            tamano++;
+        }
+    }
+
     
     
     

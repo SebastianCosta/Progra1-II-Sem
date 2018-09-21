@@ -45,11 +45,13 @@ public class Main {
         principal.setLibrerias(librerias);
         principal.setLibros(libros);
         principal.setUsuarios(usuarios);
+        
         librerias.getLista_librerias().insertar_final(libreria1);
         librerias.getLista_librerias().insertar_final(libreria2);
-        libreria1.getLista_libros().agregar_final(libro1);
-        libreria1.getLista_libros().agregar_final(libro2);
-        libreria2.getLista_libros().agregar_final(libro3);
+        
+        libreria1.getLista_libros().agregar_inicio(libro1);
+        libreria1.getLista_libros().agregar_inicio(libro2);
+        libreria2.getLista_libros().agregar_inicio(libro3);
         libros.agregar(libro1);
         libros.agregar(libro2);
         libros.agregar(libro3);

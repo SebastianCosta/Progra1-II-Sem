@@ -214,9 +214,13 @@ public class VentBusqueda extends javax.swing.JDialog {
         for (int i = 0;i< principal.getLibrerias().getLista_librerias().getTamano();i++){
             NodoS libron = temp.getElemento().getLista_libros().getCabeza();
             if (ID.equals(temp.getElemento().getNombre().toString())){
-                resultados.agregar_final((Libro) libron.getContiene());
+                
+                for (int j = 0; j < temp.getElemento().getLista_libros().getTamano(); j++) {
+                     resultados.agregar_inicio(temp.getElemento().getLista_libros().getCabeza());
+                
                
-            } libron = libron.getSiguiente();
+               
+            }} 
             temp = temp.getSiguiente();
             
             

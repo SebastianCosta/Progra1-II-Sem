@@ -167,7 +167,7 @@ public class VentGestion_Libros extends javax.swing.JDialog {
 
         jButtonConsultar_Libro.setText("Consultar Libro");
 
-        jButtonModificar_Libro.setText("Modificar vehículo");
+        jButtonModificar_Libro.setText("Modificar Libro");
         jButtonModificar_Libro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModificar_LibroActionPerformed(evt);
