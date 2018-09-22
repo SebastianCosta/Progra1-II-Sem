@@ -12,6 +12,7 @@ import virtuallibrarytec.capaLogica.estructuras.NodoS;
 import virtuallibrarytec.capaLogica.logicaNeogicos.Cliente;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionClientesPedidos;
 import virtuallibrarytec.capaLogica.logicaNeogicos.Libreria;
+import virtuallibrarytec.capaLogica.logicaNeogicos.Libro;
 import virtuallibrarytec.capaLogica.utils.ModeladorTablas;
 
 /**
@@ -68,7 +69,7 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
             Object[] filaNueva;
             NodoS<Cliente> temp = principal.getUsuarios(). getLista_clientes().getCabeza();
             for (int i = 0; i < principal.getUsuarios().getLista_clientes().getTamano(); i++) {
-                filaNueva = new Object[]{temp.getContiene().getNombre(),temp.getContiene().getLibros_compra().toString()};
+                filaNueva = new Object[]{temp.getContiene().getCedula(),temp.getContiene().getNombre(),temp.getContiene().getLibros_compra().toString()};
                 ModeladorTablas.nuevaFila(Tabla_Pedidos, filaNueva);
                 temp = temp.getSiguiente();
             }
@@ -172,7 +173,21 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void actEstado(){
+        String ID = Tabla_Pedidos.getModel().getValueAt(0, 0).toString();;
+        NodoS <Cliente> temp = principal.getUsuarios().getLista_clientes().getCabeza();
+        for (int i = 0;i<principal.getUsuarios().getLista_clientes().getTamano();i++){
+            
+            if (ID.equals(temp.getContiene().getCedula())){
+                temp.getContiene().getPedido().cambiarEstado();
+                temp.getContiene().getPedido().toString();
+                
+            }temp = temp.getSiguiente();  
+        }
+    }
     private void jButtonAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtenderActionPerformed
+        actEstado();
         principal.getUsuarios().getLista_clientes().elim_inicio();
         this.actualizarTabla();
     }//GEN-LAST:event_jButtonAtenderActionPerformed

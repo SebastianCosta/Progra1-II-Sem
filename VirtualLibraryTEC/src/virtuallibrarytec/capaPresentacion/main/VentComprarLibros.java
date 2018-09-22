@@ -16,6 +16,7 @@ import virtuallibrarytec.capaLogica.logicaNeogicos.Cliente;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibros;
 import virtuallibrarytec.capaLogica.logicaNeogicos.Libreria;
 import virtuallibrarytec.capaLogica.logicaNeogicos.Libro;
+import virtuallibrarytec.capaLogica.logicaNeogicos.Pedido;
 
 /**
  *
@@ -256,6 +257,7 @@ public class VentComprarLibros extends javax.swing.JDialog {
                 
                 if (cedula.equals(temp.getContiene().getCedula())){
                     System.out.println("entro al if");
+                    
                     temp.getContiene().agregaraLista(libronuevo);
                     
                     System.out.println(temp.getContiene().getLibros_compra().toString());

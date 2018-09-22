@@ -196,8 +196,8 @@ public class Principal extends javax.swing.JFrame {
     private void jButtonAtencionPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtencionPedidosActionPerformed
        VentAtencionPedidos ventLA = new VentAtencionPedidos(this, rootPaneCheckingEnabled, this);
        
-       Object[] columnasLibros = new Object[] {"Nombre del cliente","Libros"};        
-        ventLA.getjTablePedidos().setModel(ModeladorTablas.generarModeloDeTabla(2, columnasLibros));
+       Object[] columnasLibros = new Object[] {"Cédula del cliente","Nombre del cliente","Libros"};        
+        ventLA.getjTablePedidos().setModel(ModeladorTablas.generarModeloDeTabla(3, columnasLibros));
         ventLA.getjTablePedidos().setAutoCreateRowSorter(false);
         ventLA.actualizarTabla();
        

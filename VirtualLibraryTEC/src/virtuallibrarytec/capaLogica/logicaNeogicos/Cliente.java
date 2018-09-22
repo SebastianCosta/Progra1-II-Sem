@@ -7,7 +7,17 @@ import virtuallibrarytec.capaLogica.estructuras.ListaD;
 public class Cliente {
     private String cedula,nombre,direccion,telefono,correo;
     private Lista<Libro>libros_compra;
+    private Pedido pedido;
 
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    
     public String getCedula() {
         return cedula;
     }
@@ -72,6 +82,7 @@ public class Cliente {
         this.telefono = telefono;
         this.correo = correo;
         this.libros_compra = new Lista<Libro>();
+        this.pedido = new Pedido(this);
     }
     
     
