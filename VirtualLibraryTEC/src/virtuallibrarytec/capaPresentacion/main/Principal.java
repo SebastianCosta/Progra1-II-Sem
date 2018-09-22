@@ -78,6 +78,7 @@ public class Principal extends javax.swing.JFrame {
         jButtonBusqueda = new javax.swing.JButton();
         jButtonAtencionPedidos = new javax.swing.JButton();
         jButtonPedidos = new javax.swing.JButton();
+        jButtonGestionPedidos = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,7 +132,7 @@ public class Principal extends javax.swing.JFrame {
                 jButtonAtencionPedidosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAtencionPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 460, 420, 70));
+        getContentPane().add(jButtonAtencionPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 570, 420, 70));
 
         jButtonPedidos.setBackground(new java.awt.Color(102, 102, 102));
         jButtonPedidos.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 1, 36)); // NOI18N
@@ -142,7 +143,18 @@ public class Principal extends javax.swing.JFrame {
                 jButtonPedidosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, 420, 70));
+        getContentPane().add(jButtonPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 420, 70));
+
+        jButtonGestionPedidos.setBackground(new java.awt.Color(102, 102, 102));
+        jButtonGestionPedidos.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 1, 36)); // NOI18N
+        jButtonGestionPedidos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonGestionPedidos.setText("Gestión de Pedidos");
+        jButtonGestionPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGestionPedidosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonGestionPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, 420, 70));
 
         fondo.setBackground(new java.awt.Color(255, 255, 255));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/virtuallibrarytec/capaPresentacion/main/151059.jpg"))); // NOI18N
@@ -206,10 +218,23 @@ public class Principal extends javax.swing.JFrame {
        ventLA.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }//GEN-LAST:event_jButtonAtencionPedidosActionPerformed
 
+    private void jButtonGestionPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionPedidosActionPerformed
+       VentGestionparaCliente crear_Libro = new VentGestionparaCliente(this, rootPaneCheckingEnabled,this);
+        
+        Object[] columnasLibros = new Object[] {"ID","Nombre","Tema","Descripción","Precio"};        
+        crear_Libro.getTabla_Libros().setModel(ModeladorTablas.generarModeloDeTabla(5, columnasLibros));
+        crear_Libro.getTabla_Libros().setAutoCreateRowSorter(false);
+        //crear_Libro.actualizarTabla(crear_Libro.busCliente());
+        
+        crear_Libro.setVisible(true);
+        crear_Libro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    }//GEN-LAST:event_jButtonGestionPedidosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButtonAtencionPedidos;
     private javax.swing.JButton jButtonBusqueda;
+    private javax.swing.JButton jButtonGestionPedidos;
     private javax.swing.JButton jButtonPedidos;
     private javax.swing.JButton jbuttonGLibreria;
     private javax.swing.JButton jbuttonGLibros;

@@ -183,13 +183,17 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
                 temp.getContiene().getPedido().cambiarEstado();
                 temp.getContiene().getPedido().toString();
                 
+                
             }temp = temp.getSiguiente();  
         }
     }
+    
     private void jButtonAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtenderActionPerformed
         actEstado();
         principal.getUsuarios().getLista_clientes().elim_inicio();
         this.actualizarTabla();
+        this.dispose();
+        this.setVisible(true);
     }//GEN-LAST:event_jButtonAtenderActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

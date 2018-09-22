@@ -30,6 +30,7 @@ public class Pedido {
     }
     public void cambiarEstado(){
         this.estado = true;
+        System.out.println("se actualizo el estado");
     }
 
     public Pedido(Cliente cliente) {
@@ -39,7 +40,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + ", estado=" + estado + '}';
+        return "Pedido{" + " estado=" + estado + '}';
     }
     
     
