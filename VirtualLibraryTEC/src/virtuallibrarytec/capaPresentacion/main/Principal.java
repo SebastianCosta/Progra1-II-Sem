@@ -20,6 +20,17 @@ public class Principal extends javax.swing.JFrame {
     private GestionLibros libros;
     private GestionClientesPedidos usuarios;
     private GestionBusqueda historial;
+    private GestionClientesPedidos Respaldousuarios;
+
+    public GestionClientesPedidos getRespaldousuarios() {
+        return Respaldousuarios;
+    }
+
+    public void setRespaldousuarios(GestionClientesPedidos Respaldousuarios) {
+        this.Respaldousuarios = Respaldousuarios;
+    }
+    
+    
 
     public GestionBusqueda getHistorial() {
         return historial;

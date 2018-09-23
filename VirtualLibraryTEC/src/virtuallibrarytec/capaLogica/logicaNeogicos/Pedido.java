@@ -5,6 +5,8 @@
  */
 package virtuallibrarytec.capaLogica.logicaNeogicos;
 
+import java.util.Date;
+
 /**
  *
  * @author sebas
@@ -12,6 +14,7 @@ package virtuallibrarytec.capaLogica.logicaNeogicos;
 public class Pedido {
     private Cliente cliente;
     private boolean estado = false;
+    private Date fecha;
 
     public Cliente getCliente() {
         return cliente;
@@ -20,6 +23,15 @@ public class Pedido {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    
 
     public boolean isEstado() {
         return estado;
@@ -32,10 +44,16 @@ public class Pedido {
         this.estado = true;
         System.out.println("se actualizo el estado");
     }
+    public Date obtenerfechaactual(){
+        Date date = new Date();
+        return date;
+        
+    }
 
     public Pedido(Cliente cliente) {
         this.cliente = cliente;
         this.estado = false;
+        this.fecha = obtenerfechaactual();
     }
 
     @Override

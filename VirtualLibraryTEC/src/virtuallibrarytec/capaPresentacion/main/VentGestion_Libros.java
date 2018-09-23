@@ -237,6 +237,9 @@ public class VentGestion_Libros extends javax.swing.JDialog {
 
     private void jButtonModificar_LibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificar_LibroActionPerformed
          try {
+             VentCrear_Libro modificar_Libro = new VentCrear_Libro(this, rootPaneCheckingEnabled, this);
+             modificar_Libro.setVisible(true);
+             modificar_Libro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
             eliminarDesdeTabla();
             
@@ -244,9 +247,7 @@ public class VentGestion_Libros extends javax.swing.JDialog {
         } catch (Exception ex) {
             //ystem.out.println(ex.getMessage());
         }
-        VentCrear_Libro modificar_Libro = new VentCrear_Libro(this, rootPaneCheckingEnabled, this);
-       modificar_Libro.setVisible(true);
-       modificar_Libro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
     }//GEN-LAST:event_jButtonModificar_LibroActionPerformed
 
     

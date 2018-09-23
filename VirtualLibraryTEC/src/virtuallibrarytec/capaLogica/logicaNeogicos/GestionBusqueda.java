@@ -7,7 +7,7 @@ import virtuallibrarytec.capaLogica.estructuras.Lista;
 public class GestionBusqueda {
     public Lista<Libro> historial;
 
-    public Lista<Libro> getHistorial() {
+    public Lista<Libro> getHistorial2() {
         return historial;
     }
 

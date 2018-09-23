@@ -6,7 +6,6 @@
 package virtuallibrarytec.capaPresentacion.main;
 
 
-import java.text.SimpleDateFormat;
 import virtuallibrarytec.capaLogica.utils.ModeladorTablas;
 import javax.swing.JTable;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
@@ -24,20 +23,30 @@ import virtuallibrarytec.capaLogica.logicaNeogicos.Pedido;
  *
  * @author sebas
  */
-public class VentGestionparaCliente extends javax.swing.JDialog {
+public class VentVerClientes extends javax.swing.JDialog {
     
     private GestionClientesPedidos clientes;
-    private Principal principal;
+    private VentAtencionPedidos ventAteP;
 
-    public Principal getPrincipal() {
-        return principal;
+    public GestionClientesPedidos getClientes() {
+        return clientes;
     }
 
-    public void setPrincipal(Principal principal) {
-        this.principal = principal;
+    public void setClientes(GestionClientesPedidos clientes) {
+        this.clientes = clientes;
     }
+
+    public VentAtencionPedidos getVentAteP() {
+        return ventAteP;
+    }
+
+    public void setVentAteP(VentAtencionPedidos ventAteP) {
+        this.ventAteP = ventAteP;
+    }
+
+   
     
-
+    
     public JTable getTabla_Libros() {
         return Tabla_Libros;
     }
@@ -56,10 +65,10 @@ public class VentGestionparaCliente extends javax.swing.JDialog {
      * @param modal
      * @param principal
      */
-    public VentGestionparaCliente(java.awt.Frame parent, boolean modal, Principal principal) {
+    public VentVerClientes(java.awt.Dialog parent, boolean modal, VentAtencionPedidos ventAteP) {
         super(parent,modal);
         initComponents();
-        this.principal = principal;
+        this.ventAteP = ventAteP;
         
     }
 
@@ -90,12 +99,11 @@ public class VentGestionparaCliente extends javax.swing.JDialog {
     public void eliminarDesdeTabla() throws Exception {
         
         this.busCliente().getLibros_compra().eliminar(Tabla_Libros.getSelectedRow());
-        this.busCliente2().getLibros_compra().eliminar(Tabla_Libros.getSelectedRow());
         
         //Tabla_Agencias.remove(Tabla_Agencias.getSelectedRow());
         this.dispose();
         
-        VentGestionparaCliente crear_Libro = new VentGestionparaCliente(principal, rootPaneCheckingEnabled,principal);
+        VentVerClientes crear_Libro = new VentVerClientes(ventAteP, rootPaneCheckingEnabled,ventAteP);
         
         Object[] columnasLibros = new Object[] {"ID","Nombre","Tema","Descripción","Precio"};        
         crear_Libro.getTabla_Libros().setModel(ModeladorTablas.generarModeloDeTabla(5, columnasLibros));
@@ -110,30 +118,8 @@ public class VentGestionparaCliente extends javax.swing.JDialog {
         String cedula = this.jTextFieldCedula.getText();
       
         
-            NodoS<Cliente> temp =  principal.getRespaldousuarios().getLista_clientes().getCabeza();
-            for (int i = 0; i < principal.getRespaldousuarios().getLista_clientes().getTamano(); i++) {
-                System.out.println("Entro al for"+i);
-                
-                if (cedula.equals(temp.getContiene().getCedula())){
-                    System.out.println("entro al if de busCliente");
-                    System.out.println(temp.getContiene().toString());
-                    return temp.getContiene();
-                    
-                    
-    }                                                    
-           temp = temp.getSiguiente(); }
-        return null;
-        
-        
-       
-        
-    }
-        public Cliente busCliente2(){
-        String cedula = this.jTextFieldCedula.getText();
-      
-        
-            NodoS<Cliente> temp =  principal.getUsuarios().getLista_clientes().getCabeza();
-            for (int i = 0; i < principal.getUsuarios().getLista_clientes().getTamano(); i++) {
+            NodoS<Cliente> temp =  ventAteP.getPrincipal().getUsuarios().getLista_clientes().getCabeza();
+            for (int i = 0; i < ventAteP.getPrincipal().getUsuarios().getLista_clientes().getTamano(); i++) {
                 System.out.println("Entro al for"+i);
                 
                 if (cedula.equals(temp.getContiene().getCedula())){
@@ -166,16 +152,10 @@ public class VentGestionparaCliente extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_Libros = new javax.swing.JTable();
-        jButtonComprar_Libro = new javax.swing.JButton();
-        jButtonGestionarPedidos = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jTextFieldCedula = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextFieldPedido = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextFieldFechaPedido = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -193,22 +173,8 @@ public class VentGestionparaCliente extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(Tabla_Libros);
 
-        jButtonComprar_Libro.setText("Comprar Libro");
-        jButtonComprar_Libro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonComprar_LibroActionPerformed(evt);
-            }
-        });
-
-        jButtonGestionarPedidos.setText("Eliminar Libro");
-        jButtonGestionarPedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGestionarPedidosActionPerformed(evt);
-            }
-        });
-
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabelTitulo.setText("Gestión de Pedidos del Cliente");
+        jLabelTitulo.setText("Gestión de Clientes");
 
         jButton1.setText("Empezar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -217,13 +183,10 @@ public class VentGestionparaCliente extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Ingrese su cédula para buscar sus pedidos:");
+        jLabel2.setText("Ingrese la cédula del cliente para ver sus libros comprados:");
 
-        jLabel1.setText("Estado del pedido:");
-
-        jLabel3.setText("Fecha del Pedido:");
-
-        jButton2.setText("Consultar Libro");
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton2.setText("Ver Libro");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -237,114 +200,51 @@ public class VentGestionparaCliente extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
-                .addGap(165, 165, 165)
-                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldFechaPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                                .addComponent(jTextFieldPedido, javax.swing.GroupLayout.Alignment.LEADING))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonComprar_Libro, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonGestionarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 120, Short.MAX_VALUE))
+                .addGap(0, 83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTitulo)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel2))
+                    .addComponent(jLabelTitulo))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(jButtonComprar_Libro, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButtonGestionarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jButton2)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonComprar_LibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprar_LibroActionPerformed
-        this.dispose();
-        //abre la nueva ventana 
-        VentComprarLibrosv2 crear_compra = new VentComprarLibrosv2(this, rootPaneCheckingEnabled,this);
-         Object[] columnasLibros = new Object[] {"ID","Nombre","Tema","Descripción","Precio"};        
-         crear_compra.getTabla_Libros().setModel(ModeladorTablas.generarModeloDeTabla(5, columnasLibros));
-         crear_compra.getTabla_Libros().setAutoCreateRowSorter(false);
-        crear_compra.setVisible(true);
-         crear_compra.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-      
-        
-    }//GEN-LAST:event_jButtonComprar_LibroActionPerformed
           
     
-    private void jButtonGestionarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionarPedidosActionPerformed
-       try {
-
-            eliminarDesdeTabla();
-            
-
-        } catch (Exception ex) {
-            //ystem.out.println(ex.getMessage());
-        }
-    }//GEN-LAST:event_jButtonGestionarPedidosActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.busCliente();//busca el cleinte
-        this.actualizarTabla(this.busCliente());//actualiza el cliente en la tabla
-        //actualiza los cuadros con el estado del pedido y la fecha
-        if (busCliente().getPedido().isEstado()== false){
-            this.jTextFieldPedido.setText("No enviado");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-             String fecha = sdf.format(busCliente().getPedido().getFecha());
-        
-                 this.jTextFieldFechaPedido.setText(fecha);
-        }else{
-            this.jTextFieldPedido.setText("Enviado");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-             String fecha = sdf.format(busCliente().getPedido().getFecha());
-        
-                 this.jTextFieldFechaPedido.setText(fecha);
-        }
-        
-        
+        this.busCliente();
+        this.actualizarTabla(this.busCliente());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -369,6 +269,7 @@ public class VentGestionparaCliente extends javax.swing.JDialog {
                 
          verLibro.setVisible(true);
          verLibro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
@@ -377,15 +278,9 @@ public class VentGestionparaCliente extends javax.swing.JDialog {
     private javax.swing.JTable Tabla_Libros;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButtonComprar_Libro;
-    private javax.swing.JButton jButtonGestionarPedidos;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldCedula;
-    private javax.swing.JTextField jTextFieldFechaPedido;
-    private javax.swing.JTextField jTextFieldPedido;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,8 +22,8 @@ import virtuallibrarytec.capaLogica.logicaNeogicos.Pedido;
  *
  * @author sebas
  */
-public class VentComprarLibros extends javax.swing.JDialog {
-    private VentRegistroCompras ventRegistro;
+public class VentComprarLibrosv2 extends javax.swing.JDialog {
+    
     private GestionLibros libros;
     private VentGestionparaCliente gestionCliente;
 
@@ -35,17 +35,7 @@ public class VentComprarLibros extends javax.swing.JDialog {
         this.gestionCliente = gestionCliente;
     }
     
-    
 
-    public VentRegistroCompras getVentRegistro() {
-        return ventRegistro;
-    }
-
-    public void setVentRegistro(VentRegistroCompras ventRegistro) {
-        this.ventRegistro = ventRegistro;
-    }
-
-    
 
     public GestionLibros getLibros() {
         return libros;
@@ -71,20 +61,9 @@ public class VentComprarLibros extends javax.swing.JDialog {
     
     
 
-    /**
-     * Creates new form VentGestion_Vehiculos
-     * @param parent
-     * @param modal
-     * @param principal
-     */
-    public VentComprarLibros(java.awt.Dialog parent, boolean modal, VentRegistroCompras ventRegistro) {
-        super(parent,modal);
-        initComponents();
-        this.ventRegistro = ventRegistro;
-        
-    }
+ 
     
-    public VentComprarLibros(java.awt.Dialog parent, boolean modal,VentGestionparaCliente gestionCliente ) {
+    public VentComprarLibrosv2(java.awt.Dialog parent, boolean modal,VentGestionparaCliente gestionCliente ) {
         super(parent,modal);
         initComponents();
         this.gestionCliente = gestionCliente;
@@ -95,13 +74,13 @@ public class VentComprarLibros extends javax.swing.JDialog {
      *
      */
     public void actualizarTabla() {
-        if (ventRegistro.getPrincipal().getLibros().getLista_libros().esVacia()) {
+        if (gestionCliente.getPrincipal().getLibros().getLista_libros().esVacia()) {
             ModeladorTablas.vaciarTabla(Tabla_Libros);
         } else {
             ModeladorTablas.vaciarTabla(Tabla_Libros);
             Object[] filaNueva;
-            NodoD <Libro> temp = ventRegistro.getPrincipal().getLibros().getLista_libros().getCabeza();
-            for (int i = 0; i < ventRegistro.getPrincipal().getLibros().getLista_libros().getTamano(); i++) {
+            NodoD <Libro> temp = gestionCliente.getPrincipal().getLibros().getLista_libros().getCabeza();
+            for (int i = 0; i < gestionCliente.getPrincipal().getLibros().getLista_libros().getTamano(); i++) {
                 filaNueva = new Object[]{temp.getElemento().getID(),temp.getElemento().getNombre(),
                     temp.getElemento().getTema(),temp.getElemento().getDescripcion(),temp.getElemento().getPrecio()
                     };
@@ -117,11 +96,11 @@ public class VentComprarLibros extends javax.swing.JDialog {
      * @throws Exception
      */
     public void eliminarDesdeTabla() throws Exception {
-        ventRegistro.getPrincipal().getLibros().getLista_libros().eliminar(Tabla_Libros.getSelectedRow());
+        gestionCliente.getPrincipal().getLibros().getLista_libros().eliminar(Tabla_Libros.getSelectedRow());
         //Tabla_Agencias.remove(Tabla_Agencias.getSelectedRow());
         this.dispose();
         
-        VentComprarLibros crear_Libro = new VentComprarLibros(ventRegistro, rootPaneCheckingEnabled,ventRegistro);
+        VentComprarLibrosv2 crear_Libro = new VentComprarLibrosv2(gestionCliente, rootPaneCheckingEnabled,gestionCliente);
         
         Object[] columnasLibros = new Object[] {"ID","Nombre","Tema","Descripción","Precio"};        
         crear_Libro.getTabla_Libros().setModel(ModeladorTablas.generarModeloDeTabla(5, columnasLibros));
@@ -181,7 +160,7 @@ public class VentComprarLibros extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Ingrese su cédula antes de comprar");
+        jLabel2.setText("Ingrese su cédula para ver su carrito de compras:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,8 +209,8 @@ public class VentComprarLibros extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
     
     private void actuEstadoLibros(String ID){
-        NodoD<Libro> temporal = ventRegistro.getPrincipal().getLibros().getLista_libros().getCabeza();
-            for (int i = 0; i < ventRegistro.getPrincipal().getLibros().getLista_libros().getTamano(); i++) {
+        NodoD<Libro> temporal = gestionCliente.getPrincipal().getLibros().getLista_libros().getCabeza();
+            for (int i = 0; i < gestionCliente.getPrincipal().getLibros().getLista_libros().getTamano(); i++) {
                 if ( ID.equals(temporal.getElemento().getID())){
                     temporal.getElemento().actualizarcantidad();
                     System.out.println("sirve");
@@ -250,15 +229,13 @@ public class VentComprarLibros extends javax.swing.JDialog {
        Precio = Tabla_Libros.getModel().getValueAt(row, 4).toString();
        
        //actualiza la cantidad de libros disponibles y vendidos
-    NodoD<Libro> temporal = ventRegistro.getPrincipal().getLibros().getLista_libros().getCabeza();
-            for (int i = 0; i < ventRegistro.getPrincipal().getLibros().getLista_libros().getTamano(); i++) {
+     NodoD<Libro> temporal = gestionCliente.getPrincipal().getLibros().getLista_libros().getCabeza();
+            for (int i = 0; i < gestionCliente.getPrincipal().getLibros().getLista_libros().getTamano(); i++) {
                 if ( ID.equals(temporal.getElemento().getID())){
                     temporal.getElemento().actualizarcantidad();
                     System.out.println("sirve");
                     break;
-
-            }temporal = temporal.getSiguiente();
-            }
+            }temporal = temporal.getSiguiente();}
 
        // agrega el libro al carrito de compras del cliente
       
@@ -267,9 +244,9 @@ public class VentComprarLibros extends javax.swing.JDialog {
        String cedula = this.jTextFieldCedula.getText();
       
         
-            NodoS<Cliente> temp =  ventRegistro.getPrincipal().getUsuarios().getLista_clientes().getCabeza();
-            NodoS<Cliente> temp2 =  ventRegistro.getPrincipal().getRespaldousuarios().getLista_clientes().getCabeza();
-            for (int i = 0; i < ventRegistro.getPrincipal().getUsuarios().getLista_clientes().getTamano() && i < ventRegistro.getPrincipal().getRespaldousuarios().getLista_clientes().getTamano(); i++) {
+            NodoS<Cliente> temp = gestionCliente.getPrincipal().getUsuarios().getLista_clientes().getCabeza();
+            NodoS<Cliente> temp2 = gestionCliente.getPrincipal().getRespaldousuarios().getLista_clientes().getCabeza();
+            for (int i = 0; i < gestionCliente.getPrincipal().getUsuarios().getLista_clientes().getTamano()&& i < gestionCliente.getPrincipal().getRespaldousuarios().getLista_clientes().getTamano(); i++) {
                 System.out.println("Entro al for"+i);
                 
                 if (cedula.equals(temp.getContiene().getCedula())){
@@ -277,12 +254,11 @@ public class VentComprarLibros extends javax.swing.JDialog {
                     
                     temp.getContiene().agregaraLista(libronuevo);
                     temp2.getContiene().agregaraLista(libronuevo);
-                    
                     System.out.println(temp.getContiene().getLibros_compra().toString());
                     break;
         
     }//GEN-LAST:event_jButtonComprar_LibroActionPerformed
-           temp = temp.getSiguiente(); temp2 = temp.getSiguiente();}}
+            temp = temp.getSiguiente(); temp2 = temp.getSiguiente();}}      
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.actualizarTabla();

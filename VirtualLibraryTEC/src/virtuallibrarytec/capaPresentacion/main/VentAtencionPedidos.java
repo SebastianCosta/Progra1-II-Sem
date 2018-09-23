@@ -22,7 +22,8 @@ import virtuallibrarytec.capaLogica.utils.ModeladorTablas;
 public class VentAtencionPedidos extends javax.swing.JDialog {
     private Principal principal;
     private GestionClientesPedidos clientes;
-
+    private VentComprarLibros compras;
+    
     public GestionClientesPedidos getClientes() {
         return clientes;
     }
@@ -122,7 +123,12 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
         });
 
         jButtonVerLibro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButtonVerLibro.setText("Ver Libro");
+        jButtonVerLibro.setText("Ver Clientes");
+        jButtonVerLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerLibroActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Actualizar Tabla");
@@ -149,7 +155,7 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(jLabeltitulo)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,8 +182,8 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
     
     private void actEstado(){
         String ID = Tabla_Pedidos.getModel().getValueAt(0, 0).toString();;
-        NodoS <Cliente> temp = principal.getUsuarios().getLista_clientes().getCabeza();
-        for (int i = 0;i<principal.getUsuarios().getLista_clientes().getTamano();i++){
+        NodoS <Cliente> temp = principal.getRespaldousuarios().getLista_clientes().getCabeza();
+        for (int i = 0;i<principal.getRespaldousuarios().getLista_clientes().getTamano();i++){
             
             if (ID.equals(temp.getContiene().getCedula())){
                 temp.getContiene().getPedido().cambiarEstado();
@@ -187,18 +193,51 @@ public class VentAtencionPedidos extends javax.swing.JDialog {
             }temp = temp.getSiguiente();  
         }
     }
+    private void actEstado2(Cliente cliente2){
+        Cliente cliente  =  (Cliente) principal.getUsuarios(). getLista_clientes().getCabeza().getContiene();
+        NodoS<Libro> comparar= cliente2.getLibros_compra().getCabeza();
+        NodoD<Libro> temp = principal.getLibros().getLista_libros().getCabeza();
+            for (int i = 0; i<principal.getLibros().getLista_libros().getTamano(); i++) {
+                if (temp.getElemento().getID().equals(comparar.getContiene().getID())){
+                    temp.getElemento().actualizarcantidad();
+                    
+                    
+                    System.out.println("actualizo la cantidad en atencionpedidos");  
+                }temp = temp.getSiguiente();  comparar = comparar.getSiguiente();
+                 
+                
+            }
+    }
     
     private void jButtonAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtenderActionPerformed
-        actEstado();
-        principal.getUsuarios().getLista_clientes().elim_inicio();
-        this.actualizarTabla();
-        this.dispose();
-        this.setVisible(true);
+        //actEstado2();
+     
+       this.actEstado();
+       principal.getUsuarios().getLista_clientes().elim_inicio();
+       this.actualizarTabla();
+       this.dispose();
+       this.setVisible(true);  
+       
+        
+        
+        
     }//GEN-LAST:event_jButtonAtenderActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.actualizarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonVerLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerLibroActionPerformed
+        VentVerClientes crear_Libro = new  VentVerClientes(this, rootPaneCheckingEnabled,this);
+        
+        Object[] columnasLibros = new Object[] {"ID","Nombre","Tema","Descripción","Precio"};        
+        crear_Libro.getTabla_Libros().setModel(ModeladorTablas.generarModeloDeTabla(5, columnasLibros));
+        crear_Libro.getTabla_Libros().setAutoCreateRowSorter(false);
+        //crear_Libro.actualizarTabla(crear_Libro.busCliente());
+        
+        crear_Libro.setVisible(true);
+        crear_Libro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    }//GEN-LAST:event_jButtonVerLibroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

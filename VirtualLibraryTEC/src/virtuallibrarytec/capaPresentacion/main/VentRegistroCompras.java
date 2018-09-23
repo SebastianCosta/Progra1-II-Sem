@@ -187,7 +187,7 @@ public class VentRegistroCompras extends javax.swing.JDialog {
         principal.getUsuarios().crear(cedula, nombre, direccion, telefono, correo);
         System.out.println( principal.getUsuarios().consultar());  
         //falta actualizar tabla
-        
+        principal.getRespaldousuarios().crear(cedula, nombre, direccion, telefono, correo);
         
         
             
