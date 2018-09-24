@@ -193,7 +193,7 @@ public class VentGestionparaCliente extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(Tabla_Libros);
 
-        jButtonComprar_Libro.setText("Comprar Libro");
+        jButtonComprar_Libro.setText("Agregar más Libros");
         jButtonComprar_Libro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonComprar_LibroActionPerformed(evt);

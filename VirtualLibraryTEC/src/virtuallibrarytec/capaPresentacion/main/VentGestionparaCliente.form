@@ -129,7 +129,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButtonComprar_Libro">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Comprar Libro"/>
+        <Property name="text" type="java.lang.String" value="Agregar m&#xe1;s Libros"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonComprar_LibroActionPerformed"/>
