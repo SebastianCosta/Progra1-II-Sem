@@ -107,6 +107,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar Libro"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonConsultar_LibroActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonModificar_Libro">
       <Properties>

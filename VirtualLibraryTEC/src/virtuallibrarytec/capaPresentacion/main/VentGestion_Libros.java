@@ -166,6 +166,11 @@ public class VentGestion_Libros extends javax.swing.JDialog {
         });
 
         jButtonConsultar_Libro.setText("Consultar Libro");
+        jButtonConsultar_Libro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultar_LibroActionPerformed(evt);
+            }
+        });
 
         jButtonModificar_Libro.setText("Modificar Libro");
         jButtonModificar_Libro.addActionListener(new java.awt.event.ActionListener() {
@@ -249,6 +254,38 @@ public class VentGestion_Libros extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_jButtonModificar_LibroActionPerformed
+
+    private void jButtonConsultar_LibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultar_LibroActionPerformed
+         int row = Tabla_Libros.getSelectedRow();
+       String ID,Nombre,Tema,Descripcion, Precio,CantDisponible,CantVend;
+       ID  = Tabla_Libros.getModel().getValueAt(row, 0).toString();
+       Nombre = Tabla_Libros.getModel().getValueAt(row, 1).toString();
+       Tema = Tabla_Libros.getModel().getValueAt(row, 2).toString();
+       Descripcion =Tabla_Libros.getModel().getValueAt(row, 3).toString();
+       CantDisponible = Tabla_Libros.getModel().getValueAt(row, 5).toString();
+       CantVend = Tabla_Libros.getModel().getValueAt(row, 4).toString();
+       Precio = Tabla_Libros.getModel().getValueAt(row, 6).toString();
+       
+       Libro libronuevo = new Libro(ID,Nombre,Tema,Descripcion,Integer.parseInt(Precio)); 
+        
+        principal.getHistorial().getHistorial2().agregar_inicio(libronuevo);
+        System.out.println("agrego el libro");
+        System.out.println( principal.getHistorial().getHistorial2().toString());
+        
+        VentVerLibro2 verLibro = new VentVerLibro2(this, rootPaneCheckingEnabled,this);
+        //this.jTextFieldBusqueda.setText("");
+        verLibro.getjTextFieldID().setText(ID);
+        verLibro.getjTextFieldNombre().setText(Nombre);
+        verLibro.getjTextFieldTema().setText(Tema);
+        verLibro.getjTextFieldDescripcion().setText(Descripcion);
+        verLibro.getjTextFieldCantVendida().setText(CantVend);
+        verLibro.getjTextFieldCantidadDispoible().setText(CantDisponible);
+        verLibro.getjTextFieldPrecio().setText(Precio);
+                
+                
+         verLibro.setVisible(true);
+         verLibro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    }//GEN-LAST:event_jButtonConsultar_LibroActionPerformed
 
     
 

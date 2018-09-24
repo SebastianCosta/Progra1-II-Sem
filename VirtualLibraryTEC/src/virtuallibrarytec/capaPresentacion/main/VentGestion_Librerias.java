@@ -10,9 +10,11 @@ import virtuallibrarytec.capaLogica.utils.ModeladorTablas;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import virtuallibrarytec.capaLogica.estructuras.NodoD;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibrerias;
 import virtuallibrarytec.capaLogica.logicaNeogicos.Libreria;
+import virtuallibrarytec.capaLogica.logicaNeogicos.Libro;
 
 /**
  *
@@ -150,6 +152,11 @@ public final class VentGestion_Librerias extends javax.swing.JDialog {
         });
 
         jButtonConsular_Libreria.setText("Consultar Librería");
+        jButtonConsular_Libreria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsular_LibreriaActionPerformed(evt);
+            }
+        });
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabelTitulo.setText("Gestión de Librerías");
@@ -167,10 +174,10 @@ public final class VentGestion_Librerias extends javax.swing.JDialog {
                 .addComponent(tabla_lib)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonCrear_NuevaLibreria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonConsular_Libreria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonEliminar_Libreria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonConsular_Libreria, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                    .addComponent(jButtonCrear_NuevaLibreria, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,6 +217,29 @@ public final class VentGestion_Librerias extends javax.swing.JDialog {
             //ystem.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_jButtonEliminar_LibreriaActionPerformed
+
+    private void jButtonConsular_LibreriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsular_LibreriaActionPerformed
+        int row = Tabla_Librerias.getSelectedRow();
+       String ID,Nombre,Tema,Descripcion, Precio;
+       ID  = Tabla_Librerias.getModel().getValueAt(row, 0).toString();
+       Nombre = Tabla_Librerias.getModel().getValueAt(row, 1).toString();
+       Tema = Tabla_Librerias.getModel().getValueAt(row, 2).toString();
+       Descripcion =Tabla_Librerias.getModel().getValueAt(row, 3).toString();
+       Precio = Tabla_Librerias.getModel().getValueAt(row, 4).toString();
+       
+        
+        VentVer_Librerias verLibro = new VentVer_Librerias(this, rootPaneCheckingEnabled,this);
+        //this.jTextFieldBusqueda.setText("");
+        verLibro.getjTextFieldNombre().setText(ID);
+        verLibro.getjTextFieldPais().setText(Nombre);
+        verLibro.getjTextFieldUbicacion().setText(Tema);
+        verLibro.getjTextFieldhorario().setText(Descripcion);
+        verLibro.getjTextFieldtelefono().setText(Precio);
+                
+                
+         verLibro.setVisible(true);
+         verLibro.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    }//GEN-LAST:event_jButtonConsular_LibreriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

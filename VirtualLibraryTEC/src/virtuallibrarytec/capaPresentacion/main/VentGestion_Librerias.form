@@ -33,11 +33,11 @@
               <Component id="tabla_lib" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButtonCrear_NuevaLibreria" max="32767" attributes="0"/>
-                  <Component id="jButtonEliminar_Libreria" max="32767" attributes="0"/>
-                  <Component id="jButtonConsular_Libreria" min="-2" pref="131" max="-2" attributes="0"/>
+                  <Component id="jButtonConsular_Libreria" max="32767" attributes="0"/>
+                  <Component id="jButtonEliminar_Libreria" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonCrear_NuevaLibreria" alignment="0" pref="153" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -132,6 +132,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar Librer&#xed;a"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonConsular_LibreriaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTitulo">
       <Properties>
