@@ -23,7 +23,7 @@ public class GestionLibrerias {
         Libreria nuevaLibreria = new Libreria(nombre,pais,ubicacion,horario,numero);
         this.lista_librerias.insertar_final(nuevaLibreria);
     }
-    
+   
     /**
      *
      * @return

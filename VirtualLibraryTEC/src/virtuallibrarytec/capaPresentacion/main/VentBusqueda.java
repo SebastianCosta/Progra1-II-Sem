@@ -16,6 +16,7 @@ import virtuallibrarytec.capaLogica.estructuras.ListaD;
 import virtuallibrarytec.capaLogica.estructuras.NodoD;
 import virtuallibrarytec.capaLogica.estructuras.NodoS;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionBusqueda;
+import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibrerias;
 import virtuallibrarytec.capaLogica.logicaNeogicos.GestionLibros;
 import virtuallibrarytec.capaLogica.logicaNeogicos.Libreria;
 import virtuallibrarytec.capaLogica.logicaNeogicos.Libro;
@@ -27,6 +28,7 @@ import virtuallibrarytec.capaLogica.logicaNeogicos.Libro;
 public class VentBusqueda extends javax.swing.JDialog {
     private Principal principal;
     private GestionLibros libros;
+    private GestionLibrerias librerias;
    
     Lista<Libro> resultados;
 
@@ -208,23 +210,27 @@ public class VentBusqueda extends javax.swing.JDialog {
             
         }
     }
+    public Libreria buscarNombreLibreria(String nombreLibreria){
+        NodoD <Libreria> temp = principal.getLibrerias().getLista_librerias().getCabeza();
+         for (int i = 0;i< principal.getLibrerias().getLista_librerias().getTamano();i++){
+            if (nombreLibreria.equals(temp.getElemento().getNombre().toString())){
+               return temp.getElemento();
+                
+               
+               
+            }temp = temp.getSiguiente();
+         } 
+        return null;
+            
+    }
     public void buscarLibreria(){
        String ID = this.jTextFieldLibreria.getText();
-        NodoD <Libreria> temp = principal.getLibrerias().getLista_librerias().getCabeza();
-        for (int i = 0;i< principal.getLibrerias().getLista_librerias().getTamano();i++){
-            NodoS libron = temp.getElemento().getLista_libros().getCabeza();
-            if (ID.equals(temp.getElemento().getNombre().toString())){
-                
-                for (int j = 0; j < temp.getElemento().getLista_libros().getTamano(); j++) {
-                     resultados.agregar_inicio(temp.getElemento().getLista_libros().getCabeza());
-                
-               
-               
-            }} 
-            temp = temp.getSiguiente();
-            
-            
-        } 
+       NodoS <Libro> temp2 =  buscarNombreLibreria(ID).getLista_libros().getCabeza();
+          for (int i = 0;i< buscarNombreLibreria(ID).getLista_libros().getTamano();i++)  {
+              resultados.agregar_final(temp2.getContiene());
+              temp2 = temp2.getSiguiente();
+          }
+        
     }
 
      public void actualizarTabla() {
@@ -525,6 +531,7 @@ public class VentBusqueda extends javax.swing.JDialog {
     private void jButtonBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarNombreActionPerformed
        try{
         buscarNombre();
+        
        this.jTextFieldNombre.setText("");
         this.actualizarTabla();
         resultados.Vaciar();
